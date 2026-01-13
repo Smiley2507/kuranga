@@ -11,7 +11,7 @@
   --color-foreground: #0A2540;
 
   /* Font Variables */
-  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
   --font-display: var(--font-plus-jakarta), system-ui, sans-serif;
 }
 

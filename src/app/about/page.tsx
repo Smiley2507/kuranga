@@ -32,7 +32,7 @@ export default function About() {
                         </div>
                         <div className="flex-1 h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl">
                             <Image
-                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
+                                src="/kuranga1.jpg"
                                 alt="Team meeting"
                                 fill
                                 className="object-cover"
@@ -83,10 +83,10 @@ export default function About() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {[
-                            { name: 'Celse Amiel', role: 'Founder & CEO', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop' },
-                            { name: 'Sarah M.', role: 'Head of Training', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop' },
-                            { name: 'David K.', role: 'Senior Consultant', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop' },
-                            { name: 'Lisa R.', role: 'Operations Manager', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop' },
+                            { name: 'Uwitonze Patrick Aimable', role: 'Founder & CEO', img: '/CEO.png' },
+                            { name: 'Ingabire Tona Nancy', role: 'Chief Financial Officer', img: '/CFO.png' },
+                            { name: 'Bizimana Alexandre', role: 'Business Development and Partnerships Advisor', img: '/team02.png' },
+                            { name: 'Intumwa Tonia Marty', role: 'Operations Manager', img: '/Tonia.jpeg' },
                         ].map((member, i) => (
                             <div key={i} className="group text-center">
                                 <div className="relative w-48 h-48 mx-auto mb-6">

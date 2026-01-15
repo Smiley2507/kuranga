@@ -1,124 +1,148 @@
+'use client';
+
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/common/PageHero";
-import { Card } from "@/components/ui/Card";
-import { FadeIn } from "@/components/ui/FadeIn";
 import { CTAWithParallax } from "@/components/ui/CTAWithParallax";
-import { Check, Settings, Cog, Code, FileText, Database, Shield, Monitor, Server, Laptop, Users } from "lucide-react";
-import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import {
+    Download, Settings, PenTool, BarChart3, GraduationCap,
+    FileSpreadsheet, PieChart, Network, ArrowRightLeft,
+    Cloud, Link, Wrench, Lightbulb, ChevronDown
+} from "lucide-react";
 
 const services = [
     {
-        icon: <Check size={24} />,
-        color: 'text-green-700',
-        bg: 'bg-green-100',
-        title: "Accounting Software Sales & Installation",
-        description: "We provide licensed, discounted accounting software solutions including QuickBooks, Xero, Sage, and specialized add-ons, ensuring proper installation and long-term usability."
+        icon: <Download size={24} />,
+        title: "Software Sales & Installation",
+        description: "We provide discounted sales and installation of leading desktop accounting software, including QuickBooks, as well as affordable online solutions and specialized add-ons. Our goal is to offer reliable, cost-effective tools that support efficient financial management for businesses of all sizes."
     },
     {
         icon: <Settings size={24} />,
-        color: 'text-blue-700',
-        bg: 'bg-blue-100',
-        title: "System Setup & Configuration",
-        description: "We configure charts of accounts, user roles, workflows, inventory, payroll, and tax settings to align with your industry and operational needs."
+        title: "Initial Setup",
+        description: "Professional installation and configuration of accounting and business systems. We align your chart of accounts, workflows, user roles, and settings to best fit your industry needs."
     },
     {
-        icon: <Cog size={24} />,
-        color: 'text-purple-700',
-        bg: 'bg-purple-100',
+        icon: <PenTool size={24} />,
         title: "Software Customization",
-        description: "We tailor accounting, HR, payroll, asset management, and reporting systems to match how your organization actually works."
+        description: "Tailoring QuickBooks, TeamRoll, AssetAccountant, Xero, Fathom, and Taxation Systems to match your operations."
     },
     {
-        icon: <Code size={24} />,
-        color: 'text-indigo-700',
-        bg: 'bg-indigo-100',
-        title: "System Analysis & Custom Development",
-        description: "We assess your workflows, identify inefficiencies, and develop custom digital solutions such as dashboards, HR systems, payroll automation, and ERP modules."
+        icon: <BarChart3 size={24} />,
+        title: "System Analysis & Development",
+        description: "We examine workflows, identify gaps, and design Custom-built digital systems tailored to your operations for efficiency and compliance, including HR solutions, payroll automation, dashboards, ERP modules, and workflow tools—built for efficiency and growth."
     },
     {
-        icon: <FileText size={24} />,
-        color: 'text-orange-700',
-        bg: 'bg-orange-100',
-        title: "Bookkeeping & Compliance Services",
-        description: "We maintain clean, accurate financial records and ensure compliance with Rwanda accounting and tax regulations."
+        icon: <GraduationCap size={24} />,
+        title: "Trainings",
+        description: "Practical, certified training in QuickBooks (all versions) endorsed by the Ministry of Education and other accounting tools like Xero, HR & Payroll, Asset Management, Fathom, MS Office, Financial Modeling, Reporting, Entrepreneurship and Financial Literacy. Customized for individuals, groups, professionals, organizations, and educational institutions to meet your unique needs."
     },
     {
-        icon: <Database size={24} />,
-        color: 'text-cyan-700',
-        bg: 'bg-cyan-100',
-        title: "Financial Reporting & Analysis",
-        description: "We transform financial data into actionable insights using KPIs, dashboards, and management reports."
+        icon: <FileSpreadsheet size={24} />,
+        title: "Bookkeeping",
+        description: "Reliable, accurate, and compliant bookkeeping services tailored to your business. We ensure clean financial records, proper reconciliation, and adherence to Rwanda’s accounting and tax standards."
     },
     {
-        icon: <Server size={24} />,
-        color: 'text-pink-700',
-        bg: 'bg-pink-100',
-        title: "Data Migration & System Conversion",
-        description: "We securely migrate financial data between systems or software versions with minimal downtime."
+        icon: <PieChart size={24} />,
+        title: "Report Analysis & Customization",
+        description: "Advanced interpretation and analysis of financial reports including performance metrics, cash flow, profitability, variances, and risk indicators. We provide insights, strategic recommendations to strengthen decision-making and custom dashboards and management reports for informed decision-making."
     },
     {
-        icon: <Shield size={24} />,
-        color: 'text-emerald-700',
-        bg: 'bg-emerald-100',
-        title: "Multi-User & LAN Setup",
-        description: "We design secure, high-performance multi-user environments for desktop accounting systems."
+        icon: <Network size={24} />,
+        title: "Multi-User Environment Setup (LAN)",
+        description: "Local Area Network Secure and optimized office network setup for multi-user systems such as QuickBooks Desktop. Ensures fast performance, stability, and protected access across your organization. We set up secure, optimized multi-user environments for desktop systems."
     },
     {
-        icon: <Monitor size={24} />,
-        color: 'text-violet-700',
-        bg: 'bg-violet-100',
-        title: "Desktop as a Service (DaaS)",
-        description: "Access your desktop accounting software securely from anywhere with cloud-based infrastructure."
+        icon: <ArrowRightLeft size={24} />,
+        title: "Data Migration",
+        description: "Whether moving from another accounting software to QuickBooks or upgrading your existing QuickBooks version, we ensure all your transactions are accurately migrated. We seamlessly transfer your financial data to QuickBooks with our secure data migration services. Minimize downtime, avoid errors, and start managing your finances efficiently from day one."
     },
     {
-        icon: <Laptop size={24} />,
-        color: 'text-teal-700',
-        bg: 'bg-teal-100',
-        title: "System Integration & Automation",
-        description: "We connect accounting systems with HR, payroll, POS, banking, CRM, and inventory platforms."
+        icon: <Cloud size={24} />,
+        title: "DaaS (Desktop as a Service)",
+        description: "Desktop as a Service is Secure, cloud-based access to your desktop software from anywhere. Enables multiple users to work on QuickBooks Desktop or other applications in real time, with automatic backups, strong security, and reduced IT infrastructure costs. Desktop as a Service runs your desktop applications in the cloud with access from anywhere. Supporting all Desktop Applications: QuickBooks Desktop, Sage, Tally, and more."
     },
     {
-        icon: <Users size={24} />,
-        color: 'text-rose-700',
-        bg: 'bg-rose-100',
-        title: "Ongoing Support & Advisory",
-        description: "We provide continuous technical support, system maintenance, and strategic advisory services."
+        icon: <Link size={24} />,
+        title: "Integration",
+        description: "Connecting your QuickBooks and Xero with HR&Payroll platforms, POS, CRM tools, banking APIs, Inventory systems, and other digital solutions to create a unified and automated business ecosystem."
+    },
+    {
+        icon: <Wrench size={24} />,
+        title: "System Maintenance, Assistance & Support",
+        description: "End-to-end technical support covering system updates, troubleshooting, security checks, performance optimization, backups, user assistance and ongoing system guidance to ensure your operations run without interruption."
+    },
+    {
+        icon: <Lightbulb size={24} />,
+        title: "Advisory Services",
+        description: "Expert guidance in digital finance, system optimization, financial processes, automation, compliance, and best practices to help businesses operate efficiently and make informed decisions."
     }
 ];
 
 export default function ServicesPage() {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
     return (
         <>
             <PageHero
-                title="End-to-End Accounting & Digital System Services"
-                subtitle="Digital on Demand services helping organizations design, implement, and manage accounting and business systems that are accurate, compliant, and scalable."
+                title="Our Services"
+                subtitle="End-to-end digital solutions designed to streamline your operations, ensure compliance, and drive efficiency."
             />
 
             <Section background="white">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-3xl font-bold text-primary mb-6">Streamline Your Operations</h2>
-                    <p className="text-gray-600 text-lg">
-                        From system setup to ongoing support, we provide the digital infrastructure you need to operate efficiently and compliantly.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <Card key={index} hoverEffect className="p-6">
-                            <div className={`w-12 h-12 ${service.bg} rounded-lg flex items-center justify-center ${service.color} mb-4`}>
-                                {service.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
-                            <p className="text-gray-600 text-base leading-relaxed">
-                                {service.description}
-                            </p>
-                        </Card>
-                    ))}
+                <div className="max-w-4xl mx-auto">
+                    <div className="space-y-4">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:border-accent/20 transition-colors"
+                            >
+                                <button
+                                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${openIndex === index ? 'bg-accent text-white' : 'bg-gray-100 text-gray-600'
+                                            }`}>
+                                            {service.icon}
+                                        </div>
+                                        <h3 className={`text-lg font-bold transition-colors ${openIndex === index ? 'text-accent' : 'text-primary'
+                                            }`}>
+                                            {service.title}
+                                        </h3>
+                                    </div>
+                                    <ChevronDown
+                                        className={`text-gray-400 transition-transform duration-300 ${openIndex === index ? 'rotate-180 text-accent' : ''
+                                            }`}
+                                    />
+                                </button>
+                                <AnimatePresence>
+                                    {openIndex === index && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        >
+                                            <div className="px-6 pb-6 pt-0 pl-[4.5rem]">
+                                                <p className="text-gray-600 leading-relaxed">
+                                                    {service.description}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </Section>
 
-            <Section background="white">
+            <Section background="gray" noise>
                 <CTAWithParallax
                     title="Need a Custom Solution?"
                     description="Every business is unique. Let's discuss your specific requirements and build a system that works for you."

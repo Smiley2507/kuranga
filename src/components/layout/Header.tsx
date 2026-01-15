@@ -20,10 +20,9 @@ const navItems = [
         href: '#',
         type: 'dropdown',
         items: [
-            { name: 'Digital on Demand', href: '/services' },
-            { name: 'MyPathpreneur', href: '/programs' },
+            { name: 'MyPathpreneur', href: '/programs#mypathpreneur' },
             { name: 'ASA Program', href: '/training' },
-            { name: 'HR Outsourcing', href: '/programs' }
+            { name: 'HR Outsourcing', href: '/programs#hr-outsourcing' }
         ]
     },
     { name: 'Contact', href: '/contact' },

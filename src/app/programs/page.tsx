@@ -43,7 +43,7 @@ export default function Programs() {
                     </div>
 
                     {/* MyPathpreneur */}
-                    <div className="flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-center">
+                    <div id="mypathpreneur" className="scroll-mt-24 flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-center">
                         <div className="flex-1">
                             <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-700 mb-6">
                                 <Users size={32} />
@@ -66,7 +66,7 @@ export default function Programs() {
                     </div>
 
                     {/* Human Resources Outsourcing */}
-                    <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
+                    <div id="hr-outsourcing" className="scroll-mt-24 flex flex-col md:flex-row gap-12 md:gap-20 items-center">
                         <div className="flex-1">
                             <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-700 mb-6">
                                 <Briefcase size={32} />

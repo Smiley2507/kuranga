@@ -3,13 +3,13 @@
 import { Section } from "@/components/ui/Section";
 import { PageHero } from "@/components/common/PageHero";
 import { CTAWithParallax } from "@/components/ui/CTAWithParallax";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { Card } from "@/components/ui/Card";
 import {
     Download, Settings, PenTool, BarChart3, GraduationCap,
     FileSpreadsheet, PieChart, Network, ArrowRightLeft,
-    Cloud, Link, Wrench, Lightbulb, ChevronDown
+    Cloud, Link, Wrench, Lightbulb, ArrowRight
 } from "lucide-react";
+import NextLink from "next/link"; // Renamed to avoid verification conflict if any, though standard Link is fine.
 
 const services = [
     {
@@ -80,8 +80,6 @@ const services = [
 ];
 
 export default function ServicesPage() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-
     return (
         <>
             <PageHero
@@ -90,55 +88,23 @@ export default function ServicesPage() {
             />
 
             <Section background="white">
-                <div className="max-w-4xl mx-auto">
-                    <div className="space-y-4">
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:border-accent/20 transition-colors"
-                            >
-                                <button
-                                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                    className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${openIndex === index ? 'bg-accent text-white' : 'bg-gray-100 text-gray-600'
-                                            }`}>
-                                            {service.icon}
-                                        </div>
-                                        <h3 className={`text-lg font-bold transition-colors ${openIndex === index ? 'text-accent' : 'text-primary'
-                                            }`}>
-                                            {service.title}
-                                        </h3>
-                                    </div>
-                                    <ChevronDown
-                                        className={`text-gray-400 transition-transform duration-300 ${openIndex === index ? 'rotate-180 text-accent' : ''
-                                            }`}
-                                    />
-                                </button>
-                                <AnimatePresence>
-                                    {openIndex === index && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                                        >
-                                            <div className="px-6 pb-6 pt-0 pl-[4.5rem]">
-                                                <p className="text-gray-600 leading-relaxed">
-                                                    {service.description}
-                                                </p>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
-                        ))}
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.map((service, index) => (
+                        <Card key={index} hoverEffect className="p-8 h-full flex flex-col border border-gray-100">
+                            <div className="w-14 h-14 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl flex items-center justify-center text-accent mb-6 shrink-0 shadow-sm border border-blue-100/50">
+                                {service.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-primary mb-4 leading-tight">{service.title}</h3>
+                            <p className="text-gray-600 leading-relaxed text-sm flex-grow mb-6">
+                                {service.description}
+                            </p>
+                            <div className="mt-auto pt-4 border-t border-gray-50 flex items-center text-accent font-medium text-sm group cursor-pointer">
+                                <NextLink href="/contact" className="flex items-center gap-2 hover:gap-3 transition-all">
+                                    Get Started <ArrowRight size={16} />
+                                </NextLink>
+                            </div>
+                        </Card>
+                    ))}
                 </div>
             </Section>
 

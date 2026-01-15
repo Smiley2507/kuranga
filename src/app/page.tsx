@@ -21,7 +21,7 @@ export default function Home() {
       <Section background="white">
         <FadeIn>
           <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="flex-1 space-y-6">
+            <div className="w-full md:flex-1 space-y-6">
               <span className="text-accent font-semibold tracking-wider text-sm">WHO WE ARE</span>
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Bridging Skills, Technology, and Financial Growth</h2>
               <p className="text-gray-600 text-lg leading-relaxed">
@@ -36,8 +36,8 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="relative h-[500px] w-full rounded-2xl overflow-hidden bg-gray-100 shadow-xl group">
+            <div className="w-full md:flex-1">
+              <div className="relative h-[300px] md:h-[500px] w-full rounded-2xl overflow-hidden bg-gray-100 shadow-xl group">
                 <Image
                   src="/ASA3.jpg"
                   alt="Team collaborating"

@@ -17,34 +17,54 @@ export default function Home() {
 
       <LogoMarquee />
 
-      {/* About Preview */}
-      <Section background="white">
+      <Section background="white" className="overflow-visible">
         <FadeIn>
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="w-full md:flex-1 space-y-6">
-              <span className="text-accent font-semibold tracking-wider text-sm">WHO WE ARE</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">Bridging Skills, Technology, and Financial Growth</h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Kuranga Digital Ltd is a Rwanda-based accounting software consulting and training company established in 2014. We help organizations modernize their financial systems and empower individuals with practical, job-ready skills.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                Our work sits at the intersection of <strong>technology, finance, and capacity building</strong>, enabling sustainable growth in a digital economy.
-              </p>
-              <div className="pt-4">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="w-full md:flex-1 space-y-8">
+              <div>
+                <span className="text-accent font-semibold tracking-wider text-sm">WHO WE ARE</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-primary mt-6 leading-tight">Bridging Skills, Technology, and Financial Growth</h2>
+              </div>
+              <div className="prose prose-lg text-gray-600 leading-relaxed text-lg">
+                <p>
+                  Kuranga Digital Ltd is a FinTech and EdTech consulting agency specializing in digital accounting systems, financial management solutions, and professional training. Operating legally since <strong>2014</strong> under the Rwanda Development Board (RDB), we support organizations and individuals to adopt modern financial tools, build practical skills, and unlock economic opportunities.
+                </p>
+                <p>
+                  Our work combines <strong>technology, education, and consulting</strong> to drive sustainable impact in businesses, institutions, and communities.
+                </p>
+              </div>
+              <div className="pt-2">
                 <Link href="/about">
-                  <Button variant="outline">Learn More About Us</Button>
+                  <Button className="shadow-lg hover:shadow-xl transition-all duration-300">Learn More About Kuranga</Button>
                 </Link>
               </div>
             </div>
-            <div className="w-full md:flex-1">
-              <div className="relative h-[300px] md:h-[500px] w-full rounded-2xl overflow-hidden bg-gray-100 shadow-xl group">
+
+            <div className="w-full md:flex-1 relative">
+              {/* Decorative background element */}
+              <div className="absolute -top-10 -right-10 w-2/3 h-full bg-blue-50 rounded-3xl -z-10"></div>
+
+              <div className="relative h-[400px] md:h-[550px] w-full rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/ASA3.jpg"
                   alt="Team collaborating"
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-lg border border-gray-50 max-w-xs hidden md:block">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-accent/10 rounded-full text-accent">
+                    <CheckCircle size={24} />
+                  </div>
+                  <div>
+                    <p className="font-bold text-primary text-lg">RDB Registered</p>
+                    <p className="text-sm text-gray-500">Operating legally since 2014 supporting Rwanda's growth.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -56,17 +76,16 @@ export default function Home() {
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-accent font-semibold tracking-wider text-sm">WHAT WE DO</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2 mb-4">Comprehensive Digital Solutions</h2>
-            <p className="text-gray-600">Empowering your business with the right tools and your people with the right skills.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2 mb-4">Empowering your business with the right tools and your people with the right skills.</h2>
           </div>
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { icon: Laptop, color: 'text-primary', bg: 'bg-blue-100', title: 'Accounting & IT Consulting', desc: 'Implementation and support for QuickBooks, Xero, and custom financial systems.', href: '/services', link: 'Learn more' },
-            { icon: BookOpen, color: 'text-green-700', bg: 'bg-green-100', title: 'Professional Training', desc: 'Certified, hands-on training programs that close the gap between theory and practice.', href: '/training', link: 'Explore Programs' },
-            { icon: Users, color: 'text-purple-700', bg: 'bg-purple-100', title: 'Entrepreneurship Programs', desc: 'Empowering youth and persons with disabilities with essential business skills.', href: '/programs', link: 'View Initiatives' },
-            { icon: Users, color: 'text-orange-700', bg: 'bg-orange-100', title: 'Workforce & HR Support', desc: 'Connecting trained talent with employers to create real employment pathways.', href: '/services', link: 'Workforce Services' }
+            { icon: Laptop, color: 'text-primary', bg: 'bg-blue-100', title: 'Systems Consulting', desc: 'End-to-end implementation of QuickBooks, Xero, and custom financial solutions.', href: '/services', link: 'Our Services' },
+            { icon: BookOpen, color: 'text-green-700', bg: 'bg-green-100', title: 'Professional Training (ASA)', desc: 'Job-ready digital accounting skills for the real world through experiential learning.', href: '/training', link: 'Our Academy' },
+            { icon: Users, color: 'text-purple-700', bg: 'bg-purple-100', title: 'Inclusion Programs', desc: 'Empowering youth, women, and entrepreneurs with financial literacy and digital skills.', href: '/programs', link: 'Our Impact' },
+            { icon: Users, color: 'text-orange-700', bg: 'bg-orange-100', title: 'Workforce Solutions', desc: 'Connecting trained financial talent with top employers to improve accountability.', href: '/services', link: 'Find Talent' }
           ].map((item, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <Card hoverEffect className="p-8 h-full flex flex-col items-start">
@@ -91,41 +110,51 @@ export default function Home() {
         <FadeIn>
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="lg:w-1/3">
-              <span className="text-accent font-semibold tracking-wider text-sm uppercase mb-2 block">Why Organizations Choose Kuranga</span>
-              <h2 className="text-4xl font-bold text-primary mb-6 leading-tight">Expertise grounded in real-world impact.</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Over a decade of experience in accounting software and digital finance. Deep understanding of Rwanda's tax and compliance environment. Trusted by public institutions, private companies, and development partners.
-              </p>
+              <span className="text-accent font-semibold tracking-wider text-sm uppercase mb-2 block">Why Choose Kuranga</span>
+              <h2 className="text-4xl font-bold text-primary mb-6 leading-tight">Certified, Endorsed, and Experienced.</h2>
+              <ul className="space-y-4 mb-8">
+                {[
+                  'Certified Intuit QuickBooks Provider',
+                  'Endorsed by Ministry of Education',
+                  'Expertise in Rwanda’s Tax & SME Environment',
+                  'Proven Public & Private Sector Experience'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-gray-700 text-lg">
+                    <CheckCircle className="text-accent shrink-0" size={20} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
               <Link href="/contact">
-                <Button size="lg">Partner With Kuranga</Button>
+                <Button size="lg">Work With Us</Button>
               </Link>
             </div>
 
             <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
               {[
                 {
+                  val: 2000,
+                  suffix: '+',
+                  label: 'Individuals Trained',
+                  desc: 'In QuickBooks and digital accounting since 2015.'
+                },
+                {
+                  val: 120,
+                  suffix: '+',
+                  label: 'Talents Placed',
+                  desc: 'Trained and placed in 2024 alone.'
+                },
+                {
+                  val: 2024,
+                  suffix: '',
+                  label: 'Best Employer Award',
+                  desc: 'Kigali City Job Net Program.'
+                },
+                {
                   val: 10,
                   suffix: '+',
-                  label: 'Years of Experience',
-                  desc: 'Serving the Rwandan market since 2014 with consistent quality.'
-                },
-                {
-                  val: 500,
-                  suffix: '+',
-                  label: 'Professionals Trained',
-                  desc: 'Empowering the next generation of accountants and entrepreneurs.'
-                },
-                {
-                  val: 100,
-                  suffix: '%',
-                  label: 'Compliance Focus',
-                  desc: 'Systems designed to meet RRA and local regulatory standards.'
-                },
-                {
-                  val: 50,
-                  suffix: '+',
-                  label: 'Corporate Partners',
-                  desc: 'Trusted by leading NGOs, schools, and private enterprises.'
+                  label: 'Years of Impact',
+                  desc: 'Strong contribution to job creation and digital literacy.'
                 }
               ].map((stat, i) => (
                 <div key={i} className="border-t border-gray-200 pt-6">
@@ -145,13 +174,13 @@ export default function Home() {
       <Section background="white">
         <FadeIn>
           <CTAWithParallax
-            title="Ready to Upgrade Your Skills or Systems?"
-            description="Whether you need training, consulting, or long-term support, our experts are ready to help."
-            primaryCTA="Talk to Our Experts"
+            title="Ready to Build Skills, Systems, or Partnerships That Last?"
+            description="Whether you are a student, organization, or partner, Kuranga Digital is ready to support your journey in the digital economy."
+            primaryCTA="Contact Our Team"
             primaryHref="/contact"
-            secondaryCTA="Explore Services"
-            secondaryHref="/services"
-            imageUrl="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop"
+            secondaryCTA="Explore Our Programs"
+            secondaryHref="/training"
+            imageUrl="/"
           />
         </FadeIn>
       </Section>

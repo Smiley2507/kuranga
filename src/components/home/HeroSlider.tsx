@@ -10,33 +10,33 @@ import Image from 'next/image';
 const slides = [
     {
         id: 1,
-        headline: 'Market-Ready Accounting & Digital Finance Skills',
-        subheadline: 'Through hands-on training and real-world tools, we prepare students, professionals, and entrepreneurs with accounting software and digital finance skills demanded by today’s job market.',
-        ctaPrimary: 'Explore Training Programs',
+        headline: 'Market‑Ready Digital Accounting & Finance Skills',
+        subheadline: 'Through the Accounting Software Academy, we bridge the gap between classroom learning and the labor market using hands‑on training with industry‑leading tools like QuickBooks and Xero.',
+        ctaPrimary: 'Discover ASA',
         ctaPrimaryHref: '/training',
-        ctaSecondary: 'View Certifications',
+        ctaSecondary: 'Register for Training',
         ctaSecondaryHref: '/training',
-        image: '/student.jpg', // Business training
+        image: '/student.jpg',
     },
     {
         id: 2,
-        headline: 'Smarter Accounting Systems for Growing Businesses',
-        subheadline: 'We design, implement, and support accounting, payroll, and financial systems that improve efficiency, accuracy, and compliance—so you can focus on growth.',
-        ctaPrimary: 'View Our Services',
+        headline: 'Smart Financial Systems for Smarter Organizations',
+        subheadline: 'We help businesses, NGOs, schools, and public institutions design, implement, and support reliable accounting, payroll, and financial management systems tailored to Rwanda’s context.',
+        ctaPrimary: 'Explore Our Services',
         ctaPrimaryHref: '/services',
         ctaSecondary: 'Request a Consultation',
         ctaSecondaryHref: '/contact',
-        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2622&auto=format&fit=crop', // Accounting/Finance
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2622&auto=format&fit=crop',
     },
     {
         id: 3,
-        headline: 'Trusted Accounting Software Experts Since 2014',
-        subheadline: 'Certified ICT and accounting software consultants supporting SMEs, NGOs, schools, and enterprises across Rwanda.',
+        headline: 'A Trusted FinTech & EdTech Partner Since 2014',
+        subheadline: 'Certified by Intuit, endorsed by the Ministry of Education, and trusted by partners across Rwanda to deliver impact‑driven digital finance solutions.',
         ctaPrimary: 'About Kuranga',
         ctaPrimaryHref: '/about',
-        ctaSecondary: 'Contact Our Team',
+        ctaSecondary: 'Partner With Us',
         ctaSecondaryHref: '/contact',
-        image: '/business.jpg', // Team/Consulting
+        image: '/business.jpg',
     },
 ];
 

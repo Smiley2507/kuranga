@@ -114,7 +114,7 @@ export default function Products() {
                     description="Our experts will help you select the right software for your organization's unique needs."
                     primaryCTA="Request a Product Demo"
                     primaryHref="/contact"
-                    imageUrl="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2670&auto=format&fit=crop"
+                    imageUrl="/"
                 />
             </Section>
         </>

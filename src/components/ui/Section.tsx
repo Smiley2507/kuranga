@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
     container?: boolean;
-    background?: 'white' | 'gray' | 'glass' | 'none';
+    background?: 'white' | 'gray' | 'glass' | 'none' | 'dark-blue';
     noise?: boolean;
 }
 
@@ -18,6 +18,7 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
                         'bg-background': background === 'white',
                         'bg-slate-50': background === 'gray',
                         'glass-panel': background === 'glass',
+                        'bg-primary text-white': background === 'dark-blue',
                         'noise-bg': noise,
                     },
                     className

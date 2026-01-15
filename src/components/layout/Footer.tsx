@@ -51,6 +51,7 @@ export function Footer() {
                             <li><Link href="/about" className="text-white/70 hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="/contact" className="text-white/70 hover:text-white transition-colors">Contact</Link></li>
                             <li><Link href="/programs" className="text-white/70 hover:text-white transition-colors">Initiatives</Link></li>
+                            <li><Link href="/programs#mypathpreneur" className="text-white/70 hover:text-white transition-colors">MyPathpreneur</Link></li>
                         </ul>
                     </div>
 
@@ -58,9 +59,10 @@ export function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold mb-6">Services</h3>
                         <ul className="space-y-3">
-                            <li><Link href="/services" className="text-white/70 hover:text-white transition-colors">Digital on Demand</Link></li>
+                            <li><Link href="/programs" className="text-white/70 hover:text-white transition-colors">Digital on Demand</Link></li>
                             <li><Link href="/training" className="text-white/70 hover:text-white transition-colors">Training (ASA)</Link></li>
                             <li><Link href="/products" className="text-white/70 hover:text-white transition-colors">Software Solutions</Link></li>
+                            <li><Link href="/services" className="text-white/70 hover:text-white transition-colors">Custom System Development</Link></li>
                         </ul>
                     </div>
 

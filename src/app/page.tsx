@@ -39,7 +39,7 @@ export default function Home() {
             <div className="flex-1">
               <div className="relative h-[500px] w-full rounded-2xl overflow-hidden bg-gray-100 shadow-xl group">
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop"
+                  src="/ASA3.jpg"
                   alt="Team collaborating"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

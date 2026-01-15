@@ -16,7 +16,7 @@ const slides = [
         ctaPrimaryHref: '/training',
         ctaSecondary: 'View Certifications',
         ctaSecondaryHref: '/training',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop', // Business training
+        image: '/student.jpg', // Business training
     },
     {
         id: 2,
@@ -36,7 +36,7 @@ const slides = [
         ctaPrimaryHref: '/about',
         ctaSecondary: 'Contact Our Team',
         ctaSecondaryHref: '/contact',
-        image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop', // Team/Consulting
+        image: '/business.jpg', // Team/Consulting
     },
 ];
 

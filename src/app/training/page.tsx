@@ -46,7 +46,7 @@ export default function Training() {
                     </div>
                     <div className="h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl group">
                         <Image
-                            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2670&auto=format&fit=crop"
+                            src="/ASA4.jpg"
                             alt="Classroom Training"
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"

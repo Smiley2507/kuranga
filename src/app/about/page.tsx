@@ -83,10 +83,10 @@ export default function About() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                         {[
-                            { name: 'Uwitonze Patrick Aimable', role: 'Founder & CEO', img: '/CEO.png' },
-                            { name: 'Ingabire Tona Nancy', role: 'Chief Financial Officer', img: '/CFO.png' },
-                            { name: 'Bizimana Alexandre', role: 'Business Development and Partnerships Advisor', img: '/team02.png' },
-                            { name: 'Intumwa Tonia Marty', role: 'Operations Manager', img: '/Tonia.jpeg' },
+                            { name: 'UWITONZE Patrick Aimable', role: 'Founder & CEO', img: '/CEO.png' },
+                            { name: 'INGABIRE Tona Nancy', role: 'Chief Financial Officer', img: '/CFO.png' },
+                            { name: 'BIZIMANA Alexandre', role: 'Business Development and Partnerships Advisor', img: '/team02.png' },
+                            { name: 'INTUMWA Tonia Marty', role: 'Operations Manager', img: '/Tonia.jpeg' },
                         ].map((member, i) => (
                             <div key={i} className="group text-center">
                                 <div className="relative w-48 h-48 mx-auto mb-6">

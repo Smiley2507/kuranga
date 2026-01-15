@@ -1,3 +1,5 @@
+'use client';
+
 import { Section } from "@/components/ui/Section";
 import { PageHero } from "@/components/common/PageHero";
 import Link from "next/link";
@@ -8,11 +10,21 @@ import { CTAWithParallax } from "@/components/ui/CTAWithParallax";
 import { Award, Target, Users } from "lucide-react";
 import Image from "next/image";
 
+const partners = [
+    { name: 'Ministry of Education', src: '/republic_of_rwanda_education.png' },
+    { name: 'Kigali City', src: '/Kigali_City_Logo.png' },
+    { name: 'EBCR', src: '/EBCR_logo.png' },
+    { name: 'BPN', src: '/BPN_Logo.png' },
+    { name: 'ICT Chamber', src: '/ICT_Chamber_logo.png' },    
+    { name: 'Intuit QuickBooks', src: '/Intuit_QuickBooks_logo.png' },
+    { name: 'Xero', src: '/Xero logo.png' },
+];
+
 export default function About() {
     return (
         <>
             <PageHero
-                title="About Kuranga Digital Ltd"
+                title="About Kuranga"
                 subtitle="A decade of empowering businesses and professionals through accounting technology and practical skills."
             />
 
@@ -110,14 +122,21 @@ export default function About() {
 
             {/* Partners Grid */}
             <Section background="gray" noise>
-                <div className="text-center mb-12">
+                <div className="text-center mb-16">
                     <span className="text-accent font-semibold tracking-wider text-sm uppercase mb-3 block">Our Ecosystem</span>
                     <h2 className="text-3xl font-bold text-primary">Trusted Partners</h2>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                    {['Ministry of Education', 'ICT Chamber', 'Intuit', 'EBCR', 'Kigali City', 'QuickBooks', 'Xero', 'Sage'].map((partner, i) => (
-                        <div key={i} className="bg-white/50 h-24 rounded-lg flex items-center justify-center border border-gray-200 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition-all cursor-default">
-                            <span className="font-bold text-gray-400 group-hover:text-primary transition-colors">{partner}</span>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center max-w-6xl mx-auto px-4">
+                    {partners.map((partner, i) => (
+                        <div key={i} className="flex items-center justify-center p-4 h-30 bg-white rounded-xl shadow-sm border border-gray-100 grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src={partner.src}
+                                    alt={partner.name}
+                                    fill
+                                    className="object-contain opacity-70 hover:opacity-100 transition-opacity"
+                                />
+                            </div>
                         </div>
                     ))}
                 </div>

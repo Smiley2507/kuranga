@@ -29,16 +29,16 @@ export function Footer() {
                             Bridging skills, technology, and financial growth since 2014. We help organizations modernize their financial systems and empower individuals with practical skills.
                         </p>
                         <div className="flex gap-3">
-                            <Link href="#" className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
+                            <Link href="#" className="w-10 h-10 rounded-[5px] bg-foreground/10 flex items-center justify-center hover:bg-accent transition-all">
                                 <Linkedin size={18} />
                             </Link>
-                            <Link href="#" className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
+                            <Link href="#" className="w-10 h-10 rounded-[5px] bg-foreground/10 flex items-center justify-center hover:bg-accent transition-all">
                                 <Twitter size={18} />
                             </Link>
-                            <Link href="#" className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
+                            <Link href="#" className="w-10 h-10 rounded-[5px] bg-foreground/10 flex items-center justify-center hover:bg-accent transition-all">
                                 <Instagram size={18} />
                             </Link>
-                            <Link href="#" className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center hover:bg-accent transition-all">
+                            <Link href="#" className="w-10 h-10 rounded-[5px] bg-foreground/10 flex items-center justify-center hover:bg-accent transition-all">
                                 <Facebook size={18} />
                             </Link>
                         </div>

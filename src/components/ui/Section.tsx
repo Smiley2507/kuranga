@@ -16,7 +16,7 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
                     'py-20 md:py-32 relative overflow-hidden',
                     {
                         'bg-background': background === 'white',
-                        'bg-slate-50': background === 'gray',
+                        'bg-muted/50': background === 'gray',
                         'glass-panel': background === 'glass',
                         'bg-primary text-white': background === 'dark-blue',
                         'noise-bg': noise,

@@ -73,7 +73,7 @@ export default function About() {
                             </div>
 
                             {/* Floating Badge */}
-                            <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-lg border border-gray-50 max-w-xs hidden md:block">
+                            <div className="absolute -bottom-6 -left-6 bg-card p-5 rounded-[5px] shadow-lg border border-border max-w-xs hidden md:block">
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 bg-accent/10 rounded-full text-accent">
                                         <CheckCircle size={24} />
@@ -119,7 +119,7 @@ export default function About() {
                                 />
                             </div>
                             {/* Floating Badge */}
-                            <div className="absolute -top-6 -right-6 bg-white p-5 rounded-xl shadow-lg border border-gray-50 max-w-xs hidden md:block">
+                            <div className="absolute -top-6 -right-6 bg-card p-5 rounded-[5px] shadow-lg border border-border max-w-xs hidden md:block">
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 bg-blue-100 rounded-full text-primary">
                                         <Target size={24} />
@@ -183,7 +183,7 @@ export default function About() {
                 <div className="max-w-6xl mx-auto space-y-20">
                     {/* Mission & Vision Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                        <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-all h-full">
+                        <div className="bg-card p-10 rounded-[5px] shadow-sm border border-border relative overflow-hidden group hover:shadow-md transition-all h-full">
                             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Target size={120} className="text-blue-600" />
                             </div>
@@ -198,7 +198,7 @@ export default function About() {
                             </div>
                         </div>
 
-                        <div className="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group hover:shadow-md transition-all h-full">
+                        <div className="bg-card p-10 rounded-[5px] shadow-sm border border-border relative overflow-hidden group hover:shadow-md transition-all h-full">
                             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Award size={120} className="text-purple-600" />
                             </div>
@@ -223,7 +223,7 @@ export default function About() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {values.map((val, i) => (
-                                <Card key={i} className="p-6 border-none shadow-sm hover:shadow-md transition-all h-full bg-white/50 backdrop-blur-sm">
+                                <Card key={i} className="p-6 border-none shadow-sm hover:shadow-md transition-all h-full bg-card/50 backdrop-blur-sm">
                                     <div className="flex flex-col gap-4">
                                         <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
                                             <CheckCircle size={20} />
@@ -318,7 +318,7 @@ export default function About() {
                             <div key={i} className="group text-center">
                                 <div className="relative w-48 h-48 mx-auto mb-6">
                                     <div className="absolute inset-0 bg-accent/20 rounded-full scale-110 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all duration-500">
+                                    <div className="relative w-full h-full rounded-full overflow-hidden border border-transparent group-hover:border-accent transition-all duration-500">
                                         <Image
                                             src={member.img}
                                             alt={member.name}
@@ -377,7 +377,7 @@ export default function About() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center max-w-6xl mx-auto px-4">
                     {partners.map((partner, i) => (
-                        <div key={i} className="flex items-center justify-center p-4 h-30 bg-white rounded-xl shadow-sm border border-gray-100 grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                        <div key={i} className="flex items-center justify-center p-4 h-30 bg-card rounded-[5px] shadow-sm border border-border grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
                             <div className="relative w-full h-full">
                                 <Image
                                     src={partner.src}

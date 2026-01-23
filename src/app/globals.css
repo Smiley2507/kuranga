@@ -4,11 +4,12 @@
 @theme {
   /* New Colors - Adjusted Blue for fresh look */
   --color-primary: #0A2540;
-  /* Darker, cleaner navy */
   --color-accent: #0070E0;
-  /* Fresh, vivid blue instead of solarized cyan */
-  --color-background: #FFFFFF;
-  --color-foreground: #0A2540;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
 
   /* Font Variables */
   --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
@@ -16,14 +17,57 @@
 }
 
 :root {
-  --primary: #073161;
-  --accent: #24B1E6;
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(215 25% 27%);
+  /* Soft charcoal gray instead of deep black */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(215 25% 27%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(215 25% 27%);
+  --primary: hsl(221.2 83.2% 53.3%);
+  --primary-foreground: hsl(210 40% 98%);
+  --secondary: hsl(210 40% 96.1%);
+  --secondary-foreground: hsl(215 25% 27%);
+  --muted: hsl(210 40% 96.1%);
+  --muted-foreground: hsl(215 16% 47%);
+  --accent: hsl(199 89% 48%);
+  --accent-foreground: hsl(215 25% 27%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(214.3 31.8% 91%);
+  --input: hsl(214.3 31.8% 91%);
+  --ring: hsl(221.2 83.2% 53.3%);
+  --radius: 5px;
+}
+
+.dark {
+  --background: hsl(222.2 84% 4.9%);
+  --foreground: hsl(210 40% 85%);
+  /* Slightly softer than pure white */
+  --card: hsl(222.2 84% 8%);
+  --card-foreground: hsl(210 40% 85%);
+  --popover: hsl(222.2 84% 4.9%);
+  --popover-foreground: hsl(210 40% 85%);
+  --primary: hsl(217.2 91.2% 59.8%);
+  --primary-foreground: hsl(215 25% 27%);
+  --secondary: hsl(217.2 32.6% 17.5%);
+  --secondary-foreground: hsl(210 40% 95%);
+  --muted: hsl(217.2 32.6% 25%);
+  --muted-foreground: hsl(215 20.2% 65%);
+  --accent: hsl(199 89% 48%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(210 40% 98%);
+  --border: hsl(217.2 32.6% 20%);
+  --input: hsl(217.2 32.6% 20%);
+  --ring: hsl(224.3 76.3% 48%);
 }
 
 body {
   @apply bg-background text-foreground antialiased overflow-x-hidden;
   font-family: var(--font-sans);
-  color: var(--color-foreground);
+  font-weight: 400;
+  /* Ensure normal text is not too bold */
 }
 
 h1,

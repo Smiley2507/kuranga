@@ -15,7 +15,7 @@ const partners = [
 
 export function LogoMarquee() {
     return (
-        <div className="py-10 bg-white border-b border-gray-100 overflow-hidden relative">
+        <div className="py-10 bg-background border-b border-border overflow-hidden relative">
             <div className="flex w-full">
                 <motion.div
                     className="flex gap-16 whitespace-nowrap items-center"

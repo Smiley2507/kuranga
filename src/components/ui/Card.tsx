@@ -12,18 +12,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             <div
                 ref={ref}
                 className={cn(
-                    'rounded-xl p-6 transition-all duration-500 ease-out border',
+                    'rounded-[5px] p-6 transition-all duration-500 ease-out border',
                     {
-                        // Classic White
-                        'bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-gray-100/50': variant === 'white',
+                        // Classic White (Adaptable)
+                        'bg-card text-card-foreground shadow-sm border-border': variant === 'white',
 
-                        // Glass Effects
-                        'glass-panel shadow-lg border-white/20': variant === 'glass',
+                        // Glass Effects (Keeping for specific uses, but updated)
+                        'glass-panel shadow-md border-border': variant === 'glass',
                         'glass-panel-dark text-white border-white/10': variant === 'glass-dark',
 
-                        // Premium Hover Effects with lift and glow
-                        'hover:-translate-y-2 hover:shadow-[0_12px_24px_rgba(0,0,0,0.08)] hover:border-accent/20 hover:bg-white': hoverEffect && variant === 'white',
-                        'hover:-translate-y-1 hover:shadow-xl hover:bg-white/90': hoverEffect && variant === 'glass',
+                        // Premium Hover Effects - simplified
+                        'hover:shadow-md hover:border-accent/20': hoverEffect,
                     },
                     className
                 )}

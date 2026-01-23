@@ -60,7 +60,7 @@ export function Dropdown({ label, items, scrolled }: DropdownProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50"
+                        className="absolute top-full left-0 mt-2 w-56 bg-card rounded-[5px] shadow-xl border border-border overflow-hidden z-50 focus:outline-none"
                     >
                         <div className="py-2">
                             {items.map((item, index) => (

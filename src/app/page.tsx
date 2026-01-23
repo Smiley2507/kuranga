@@ -42,9 +42,9 @@ export default function Home() {
 
             <div className="w-full md:flex-1 relative">
               {/* Decorative background element */}
-              <div className="absolute -top-10 -right-10 w-2/3 h-full bg-blue-50 rounded-3xl -z-10"></div>
+              <div className="absolute -top-10 -right-10 w-2/3 h-full bg-accent/5 rounded-[5px] -z-10"></div>
 
-              <div className="relative h-[400px] md:h-[550px] w-full rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative h-[400px] md:h-[550px] w-full rounded-[5px] overflow-hidden shadow-2xl">
                 <Image
                   src="/ASA3.jpg"
                   alt="Team collaborating"
@@ -55,7 +55,7 @@ export default function Home() {
               </div>
 
               {/* Floating Badge */}
-              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-lg border border-gray-50 max-w-xs hidden md:block">
+              <div className="absolute -bottom-8 -left-8 bg-card p-6 rounded-[5px] shadow-lg border border-border max-w-xs hidden md:block">
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-accent/10 rounded-full text-accent">
                     <CheckCircle size={24} />
@@ -89,7 +89,7 @@ export default function Home() {
           ].map((item, i) => (
             <FadeIn key={i} delay={i * 0.1}>
               <Card hoverEffect className="p-8 h-full flex flex-col items-start">
-                <div className={`w-12 h-12 ${item.bg} rounded-lg flex items-center justify-center ${item.color} mb-6`}>
+                <div className={`w-12 h-12 ${item.bg} rounded-[5px] flex items-center justify-center ${item.color} mb-6`}>
                   <item.icon size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>

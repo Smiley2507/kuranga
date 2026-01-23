@@ -72,7 +72,7 @@ export default function Contact() {
                                             <input
                                                 type="text"
                                                 id="name"
-                                                className="w-full px-5 py-4 rounded-xl bg-white/70 border border-gray-200 focus:bg-white focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-gray-400"
+                                                className="w-full px-5 py-4 rounded-[5px] bg-card/70 border border-border focus:bg-card focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground text-foreground"
                                                 placeholder="e.g. Jean Damascene"
                                             />
                                         </div>
@@ -81,7 +81,7 @@ export default function Contact() {
                                             <input
                                                 type="email"
                                                 id="email"
-                                                className="w-full px-5 py-4 rounded-xl bg-white/70 border border-gray-200 focus:bg-white focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-gray-400"
+                                                className="w-full px-5 py-4 rounded-[5px] bg-card/70 border border-border focus:bg-card focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground text-foreground"
                                                 placeholder="your@email.com"
                                             />
                                         </div>
@@ -93,7 +93,7 @@ export default function Contact() {
                                             <input
                                                 type="tel"
                                                 id="phone"
-                                                className="w-full px-5 py-4 rounded-xl bg-white/70 border border-gray-200 focus:bg-white focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-gray-400"
+                                                className="w-full px-5 py-4 rounded-[5px] bg-card/70 border border-border focus:bg-card focus:ring-4 focus:ring-accent/10 focus:border-accent outline-none transition-all placeholder:text-muted-foreground text-foreground"
                                                 placeholder="+250 7XX XXX XXX"
                                             />
                                         </div>
@@ -155,7 +155,7 @@ export default function Contact() {
                         ></iframe>
                         {/* Overlay to catch clicks and direct to real map if needed, or just for style */}
                         <div className="absolute top-6 left-6 z-10">
-                            <Card className="py-3 px-5 bg-white/90 backdrop-blur-md border-white/40 shadow-xl">
+                            <Card className="py-3 px-5 bg-card/90 backdrop-blur-md border-border shadow-xl">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white shadow-lg shadow-accent/30">
                                         <MapPin size={20} />

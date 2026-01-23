@@ -118,7 +118,10 @@ export function CTAWithParallax({
                     className="flex flex-col sm:flex-row gap-4 justify-center"
                 >
                     <Link href={primaryHref}>
-                        <Button size="lg" variant="secondary" className="group">
+                        <Button
+                            size="lg"
+                            className="bg-white text-primary border-none hover:bg-white/90 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 group"
+                        >
                             {primaryCTA}
                             <motion.span
                                 className="ml-2 inline-block"
@@ -131,7 +134,11 @@ export function CTAWithParallax({
                     </Link>
                     {secondaryCTA && secondaryHref && (
                         <Link href={secondaryHref}>
-                            <Button size="lg" variant="outline">
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="border-white/40 text-white hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300"
+                            >
                                 {secondaryCTA}
                             </Button>
                         </Link>

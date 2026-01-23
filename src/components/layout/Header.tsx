@@ -54,7 +54,7 @@ export function Header() {
                 className={cn(
                     'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent',
                     scrolled
-                        ? 'bg-white/90 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-white/50'
+                        ? 'bg-background/80 backdrop-blur-xl shadow-sm border-border'
                         : 'bg-transparent'
                 )}
             >
@@ -91,7 +91,7 @@ export function Header() {
                                             pathname === item.href
                                                 ? 'text-accent font-semibold'
                                                 : scrolled
-                                                    ? 'text-gray-600 hover:text-accent'
+                                                    ? 'text-muted-foreground hover:text-accent'
                                                     : 'text-white/90 hover:text-white'
                                         )}
                                     >
@@ -101,10 +101,10 @@ export function Header() {
                             ))}
                             <Link href="/contact">
                                 <button className={cn(
-                                    "px-5 py-2.5 rounded-md text-sm font-medium transition-all font-sans",
+                                    "px-5 py-2.5 rounded-[5px] text-sm font-bold transition-all font-sans",
                                     scrolled
                                         ? "bg-accent text-white hover:bg-accent/90"
-                                        : "bg-white text-primary hover:bg-gray-100"
+                                        : "bg-background text-foreground border border-border hover:bg-muted"
                                 )}>
                                     Get Started
                                 </button>
@@ -115,7 +115,7 @@ export function Header() {
                         <button
                             className={cn(
                                 "md:hidden z-50 p-2 transition-colors",
-                                scrolled || isOpen ? "text-primary" : "text-white"
+                                scrolled || isOpen ? "text-foreground" : "text-white"
                             )}
                             onClick={() => setIsOpen(!isOpen)}
                             aria-label="Toggle menu"
@@ -130,18 +130,18 @@ export function Header() {
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="absolute top-full left-0 right-0 mt-2 mx-4 p-4 rounded-xl glass-panel bg-white shadow-xl md:hidden flex flex-col gap-4"
+                                    className="absolute top-full left-0 right-0 mt-2 mx-4 p-4 rounded-[5px] glass-panel bg-card/95 backdrop-blur-xl shadow-xl md:hidden flex flex-col gap-4 border border-border"
                                 >
                                     <nav className="flex flex-col gap-4 mt-2">
                                         {navItems.map((item) => (
                                             item.type === 'dropdown' ? (
                                                 <div key={item.name} className="flex flex-col gap-2">
-                                                    <span className="text-lg font-semibold text-primary px-4">{item.name}</span>
+                                                    <span className="text-lg font-semibold text-foreground px-4">{item.name}</span>
                                                     {item.items?.map((subItem) => (
                                                         <Link
                                                             key={subItem.href}
                                                             href={subItem.href}
-                                                            className="pl-8 py-1 text-base font-medium text-gray-600 hover:text-accent"
+                                                            className="pl-8 py-1 text-base font-medium text-muted-foreground hover:text-accent"
                                                             onClick={() => setIsOpen(false)}
                                                         >
                                                             {subItem.name}
@@ -153,10 +153,10 @@ export function Header() {
                                                     key={item.href}
                                                     href={item.href}
                                                     className={cn(
-                                                        'text-lg font-medium transition-colors font-sans px-4 py-2 hover:bg-gray-50 rounded-lg',
+                                                        'text-lg font-medium transition-colors font-sans px-4 py-2 hover:bg-muted/50 rounded-[5px]',
                                                         pathname === item.href
                                                             ? 'text-accent font-semibold'
-                                                            : 'text-gray-600'
+                                                            : 'text-muted-foreground'
                                                     )}
                                                     onClick={() => setIsOpen(false)}
                                                 >
@@ -167,7 +167,7 @@ export function Header() {
                                     </nav>
                                     <div className="pt-2 border-t border-gray-100">
                                         <Link href="/contact" onClick={() => setIsOpen(false)}>
-                                            <button className="w-full bg-accent text-white py-3 rounded-md font-medium">Get Started</button>
+                                            <button className="w-full bg-accent text-white py-3 rounded-[5px] font-bold">Get Started</button>
                                         </Link>
                                     </div>
                                 </motion.div>

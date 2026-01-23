@@ -12,7 +12,7 @@ import { Counter } from "@/components/ui/Counter";
 
 export default function Training() {
     return (
-        <div className="bg-white">
+        <div className="bg-background">
             {/* Custom Hero for ASA */}
             <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
                 {/* Background Image with Overlay */}
@@ -60,10 +60,10 @@ export default function Training() {
                             Accounting Software Academy
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tighter">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight tracking-tighter text-white">
                             Master <span className="relative inline-block px-1">
                                 <span className="relative z-10 text-accent">Digital</span>
-                                <span className="absolute bottom-[0.15em] left-0 w-full h-[0.4em] bg-accent/10 backdrop-blur-sm -z-10 rounded-sm border-b-2 border-accent/30"></span>
+                                <span className="absolute bottom-[0.15em] left-0 w-full h-[0.4em] bg-accent/10 backdrop-blur-sm -z-10 rounded-sm border-b border-accent/30"></span>
                             </span> Finance.
                         </h1>
                         <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
@@ -71,14 +71,14 @@ export default function Training() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                            <Link href="#register">
-                                <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary-dark font-black min-w-[220px] shadow-[0_10px_30px_-10px_rgba(244,197,94,0.4)] transition-all hover:scale-105 active:scale-95 text-lg">
+                            <Link href="/training/register">
+                                <Button size="lg" className="bg-accent hover:bg-accent/90 text-primary-dark font-bold min-w-[220px] shadow-lg transition-all hover:scale-105 active:scale-95 text-lg rounded-[5px]">
                                     Apply Now
                                 </Button>
                             </Link>
-                            <Link href="#curriculum">
-                                <Button size="lg" variant="outline" className="border-2 border-white/40 text-white hover:bg-white hover:text-accent min-w-[220px] font-bold text-lg backdrop-blur-sm transition-all">
-                                    Explore Program
+                            <Link href="/training/status">
+                                <Button size="lg" variant="outline" className="border border-white/40 text-white hover:bg-white hover:text-accent min-w-[220px] font-bold text-lg backdrop-blur-sm transition-all rounded-[5px]">
+                                    Track Status
                                 </Button>
                             </Link>
                         </div>
@@ -99,14 +99,14 @@ export default function Training() {
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-20">
-                        <span className="text-accent font-black tracking-widest text-sm uppercase mb-3 block">Perspective</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-primary leading-tight">Bridging the Skills Mismatch</h2>
+                        <span className="text-accent font-bold tracking-widest text-sm uppercase mb-3 block">Perspective</span>
+                        <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">Bridging the Skills Mismatch</h2>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
                         {/* The Problem (Before) */}
                         <FadeIn direction="left">
-                            <div className="h-full bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col relative overflow-hidden">
+                            <div className="h-full bg-muted/30 p-8 rounded-[5px] border border-border flex flex-col relative overflow-hidden">
                                 <div className="absolute top-4 right-4 text-slate-200">
                                     <AlertTriangle size={80} />
                                 </div>
@@ -135,7 +135,7 @@ export default function Training() {
 
                         {/* The ASA Solution (After) */}
                         <FadeIn direction="right">
-                            <div className="h-full bg-primary p-8 rounded-3xl border border-primary-light/10 text-white flex flex-col relative overflow-hidden shadow-2xl">
+                            <div className="h-full bg-foreground p-8 rounded-[5px] border border-border text-background flex flex-col relative overflow-hidden shadow-xl">
                                 <div className="absolute -bottom-10 -right-10 text-white opacity-5">
                                     <Award size={200} />
                                 </div>
@@ -248,9 +248,9 @@ export default function Training() {
             {/* Expanded Curriculum - Single Page Full Coverage */}
             <Section background="white" noise id="curriculum">
                 <div className="text-center max-w-4xl mx-auto mb-20 px-4">
-                    <span className="text-accent font-black tracking-widest text-sm uppercase mb-3 block">Course Catalog</span>
-                    <h2 className="text-4xl md:text-5xl font-black text-primary leading-tight">Comprehensive Learning Tracks</h2>
-                    <p className="text-gray-600 mt-6 text-lg">ASA delivers deep, hands-on training across all key areas of digital accounting and financial management.</p>
+                    <span className="text-accent font-bold tracking-widest text-sm uppercase mb-3 block">Course Catalog</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">Comprehensive Learning Tracks</h2>
+                    <p className="text-muted-foreground mt-6 text-lg">ASA delivers deep, hands-on training across all key areas of digital accounting and financial management.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
@@ -390,7 +390,7 @@ export default function Training() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-stretch px-4">
                     {/* Option 1: Standard Application */}
-                    <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 flex flex-col relative group transition-all duration-300 hover:border-accent/40 active:translate-y-1">
+                    <div className="bg-card p-10 rounded-[5px] shadow-sm border border-border flex flex-col relative group transition-all duration-300 hover:border-accent/40 active:translate-y-1">
                         <div className="mb-10">
                             <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-primary mb-6">
                                 <Users size={24} />
@@ -415,7 +415,7 @@ export default function Training() {
                             ))}
                         </ul>
 
-                        <Link href="/contact" className="w-full">
+                        <Link href="/training/register" className="w-full">
                             <Button size="lg" className="w-full bg-primary hover:bg-slate-900 text-white font-black text-[15px] uppercase tracking-widest py-6 rounded-2xl shadow-xl transition-all">
                                 Register Standard
                             </Button>
@@ -423,15 +423,15 @@ export default function Training() {
                     </div>
 
                     {/* Option 2: Study Now Pay Later (Chancen) */}
-                    <div className="bg-white rounded-3xl shadow-2xl shadow-primary/5 border border-primary/5 flex flex-col relative overflow-hidden transition-all duration-300 hover:border-accent/40 active:translate-y-1">
+                    <div className="bg-card rounded-[5px] shadow-2xl shadow-primary/5 border border-primary/5 flex flex-col relative overflow-hidden transition-all duration-300 hover:border-accent/40 active:translate-y-1">
                         {/* Highlighting Strip */}
                         <div className="absolute top-0 left-0 w-full h-[6px] bg-gradient-to-r from-blue-600 via-accent to-emerald-500"></div>
 
-                        <div className="p-10 flex flex-col h-full bg-gradient-to-br from-white to-slate-50/50">
+                        <div className="p-10 flex flex-col h-full bg-gradient-to-br from-card to-muted/10">
                             <div className="mb-10 flex justify-between items-start">
                                 <div>
                                     {/* Chancen Logo Placeholder */}
-                                    <div className="w-40 h-16 relative bg-white rounded-xl border border-slate-200 mb-6 flex items-center justify-center p-4 shadow-sm hover:grayscale transition-all">
+                                    <div className="w-40 h-16 relative bg-muted rounded-[5px] border border-border mb-6 flex items-center justify-center p-4 shadow-sm hover:grayscale transition-all">
                                         <div className="relative w-full h-full">
                                             <Image
                                                 src="/Chancen-logo.png"
@@ -441,14 +441,14 @@ export default function Training() {
                                             />
                                         </div>
                                     </div>
-                                    <h3 className="text-2xl font-black text-accent mb-2">Study Now, Pay Later</h3>
+                                    <h3 className="text-2xl font-bold text-accent mb-2">Study Now, Pay Later</h3>
                                 </div>
-                                <div className="bg-accent/10 border border-accent/20 px-3 py-1 rounded-full text-[10px] font-black text-accent-dark uppercase tracking-widest">
+                                <div className="bg-accent/10 border border-accent/20 px-3 py-1 rounded-[5px] text-[10px] font-bold text-accent uppercase tracking-widest">
                                     Sponsored
                                 </div>
                             </div>
 
-                            <p className="text-slate-600 text-sm leading-relaxed mb-8 italic">
+                            <p className="text-muted-foreground text-sm leading-relaxed mb-8 italic">
                                 "Our mission is to ensure quality education is accessible regardless of financial background."
                             </p>
 
@@ -461,13 +461,13 @@ export default function Training() {
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-start gap-4">
                                         <ArrowRight size={14} className="text-blue-600 mt-1 shrink-0" />
-                                        <span className="text-slate-800 text-sm leading-tight">{item}</span>
+                                        <span className="text-foreground text-sm leading-tight">{item}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            <Link href="/contact" className="w-full">
-                                <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black text-[15px] uppercase tracking-widest py-6 rounded-2xl shadow-2xl shadow-blue-600/20 transition-all">
+                            <Link href="/training/register" className="w-full">
+                                <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-[15px] uppercase tracking-widest py-6 rounded-[5px] shadow-lg transition-all">
                                     Apply for Sponsorship
                                 </Button>
                             </Link>

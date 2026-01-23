@@ -1,4 +1,6 @@
-import type { Metadata } from "next";
+'use client';
+
+import { usePathname } from 'next/navigation';
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -11,25 +13,30 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Kuranga Digital Ltd | Accounting Software & Digital Finance Experts",
-  description: "Kuranga Digital Ltd provides accounting software training, consulting, and digital systems implementation in Rwanda. Trusted since 2014.",
-};
+import { ThemeProvider } from "@/components/theme-provider";
+import { ToastProvider } from "@/components/ui/Toast";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isDashboard = pathname.startsWith('/admin') || pathname.startsWith('/partner');
+
   return (
-    <html lang="en" className={`${plusJakartaSans.variable}`}>
+    <html lang="en" className={`${plusJakartaSans.variable}`} suppressHydrationWarning>
       <body>
-        <SmoothScroll />
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider defaultTheme="light" storageKey="kuranga-theme">
+          <ToastProvider>
+            <SmoothScroll />
+            {!isDashboard && <Header />}
+            <main className={isDashboard ? "" : "min-h-screen"}>
+              {children}
+            </main>
+            {!isDashboard && <Footer />}
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

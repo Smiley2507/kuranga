@@ -326,7 +326,7 @@ export default function RegisterPage() {
                                         <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest block mb-4">
                                             Course Selection {formData.registrationType === 'SPONSORED' ? '(Chancen Package - Preselected)' : '(Max 2 Courses)'}
                                         </label>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 h-[250px] overflow-y-auto pr-2 custom-scrollbar border border-border/50 p-4 rounded-[5px] bg-slate-400/5">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 h-[250px] overflow-y-auto pr-2 custom-scrollbar border border-white/10 p-4 rounded-[5px] bg-black/20">
                                             {isLoadingCourses ? (
                                                 <div className="col-span-full flex flex-col items-center justify-center py-10 text-center opacity-50">
                                                     <Loader2 className="animate-spin mb-4" />
@@ -354,10 +354,10 @@ export default function RegisterPage() {
                                                                 setFormData(p => ({ ...p, courseSelected: next.join(', ') }));
                                                             }}
                                                             className={cn(
-                                                                "flex items-center gap-3 p-3 rounded-[5px] border cursor-pointer transition-all text-xs font-bold",
+                                                                "flex items-center gap-3 p-3 rounded-[5px] border cursor-pointer transition-all text-xs font-bold relative overflow-hidden group/item",
                                                                 selected
-                                                                    ? "bg-accent border-accent text-white shadow-lg"
-                                                                    : "bg-card/50 border-border text-white/70 hover:border-accent/50 hover:text-white",
+                                                                    ? "bg-accent border-accent text-white shadow-lg shadow-accent/20"
+                                                                    : "bg-slate-800/50 border-white/10 text-slate-300 hover:bg-slate-800 hover:border-accent/40 hover:text-white hover:shadow-md",
                                                                 isLocked && "opacity-80 cursor-not-allowed border-accent/30"
                                                             )}
                                                         >
@@ -421,28 +421,28 @@ export default function RegisterPage() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="space-y-4">
                                                 <div>
-                                                    <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest mb-1">Personal Details</p>
-                                                    <div className="bg-slate-400/5 border border-border/50 p-4 rounded-[5px] space-y-2">
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Name:</span> <span className="font-bold">{formData.fullName}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Email:</span> <span className="font-bold">{formData.email}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Phone:</span> <span className="font-bold">{formData.phone}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">District:</span> <span className="font-bold">{formData.district}</span></div>
+                                                    <p className="text-[10px] uppercase font-bold text-slate-600 tracking-widest mb-1">Personal Details</p>
+                                                    <div className="bg-white/80 border border-slate-200 p-4 rounded-[5px] space-y-2">
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Name:</span> <span className="font-bold text-slate-900">{formData.fullName}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Email:</span> <span className="font-bold text-slate-900">{formData.email}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Phone:</span> <span className="font-bold text-slate-900">{formData.phone}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">District:</span> <span className="font-bold text-slate-900">{formData.district}</span></div>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest mb-1">Education & Program</p>
-                                                    <div className="bg-slate-400/5 border border-border/50 p-4 rounded-[5px] space-y-2">
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Level:</span> <span className="font-bold">{formData.educationLevel}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Institute:</span> <span className="font-bold">{formData.university}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Type:</span> <span className="font-bold uppercase">{formData.registrationType}</span></div>
-                                                        <div className="flex justify-between text-sm"><span className="text-white/40">Session:</span> <span className="font-bold text-accent">{formData.session}</span></div>
+                                                    <p className="text-[10px] uppercase font-bold text-slate-600 tracking-widest mb-1">Education & Program</p>
+                                                    <div className="bg-white/80 border border-slate-200 p-4 rounded-[5px] space-y-2">
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Level:</span> <span className="font-bold text-slate-900">{formData.educationLevel}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Institute:</span> <span className="font-bold text-slate-900">{formData.university}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Type:</span> <span className="font-bold uppercase text-slate-900">{formData.registrationType}</span></div>
+                                                        <div className="flex justify-between text-sm"><span className="text-slate-500">Session:</span> <span className="font-bold text-accent">{formData.session}</span></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="space-y-4">
                                                 <div>
-                                                    <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest mb-1">Course Selections</p>
-                                                    <div className="bg-slate-400/5 border border-border/50 p-4 rounded-[5px]">
+                                                    <p className="text-[10px] uppercase font-bold text-slate-600 tracking-widest mb-1">Course Selections</p>
+                                                    <div className="bg-white/80 border border-slate-200 p-4 rounded-[5px]">
                                                         <div className="flex flex-wrap gap-2">
                                                             {formData.courseSelected?.split(', ').map(c => (
                                                                 <span key={c} className="px-3 py-1 bg-accent/20 border border-accent/30 rounded-full text-[10px] font-bold text-accent">
@@ -454,9 +454,9 @@ export default function RegisterPage() {
                                                 </div>
                                                 {formData.registrationType === 'SPONSORED' && (
                                                     <div>
-                                                        <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-widest mb-1">Motivation</p>
-                                                        <div className="bg-slate-400/5 border border-border/50 p-4 rounded-[5px]">
-                                                            <p className="text-xs italic text-white/60 line-clamp-4 leading-relaxed font-normal">"{formData.motivationStatement}"</p>
+                                                        <p className="text-[10px] uppercase font-bold text-slate-600 tracking-widest mb-1">Motivation</p>
+                                                        <div className="bg-white/80 border border-slate-200 p-4 rounded-[5px]">
+                                                            <p className="text-xs italic text-slate-600 line-clamp-4 leading-relaxed font-normal">"{formData.motivationStatement}"</p>
                                                         </div>
                                                     </div>
                                                 )}

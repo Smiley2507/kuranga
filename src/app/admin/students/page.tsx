@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Select } from "@/components/ui/Select";
 import { api, StudentResponse, StudentStatus, RegistrationType } from "@/lib/api";
-import { Search, Filter, Eye, User, ChevronLeft, ChevronRight, ArrowUpDown, Download, CheckSquare, Square } from 'lucide-react';
+import { Search, Filter, Eye, User, ChevronLeft, ChevronRight, ArrowUpDown, Download, CheckSquare, Square, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -243,11 +243,25 @@ export default function StudentsListPage() {
                                             </Badge>
                                         </TCell>
                                         <TCell className="text-right">
-                                            <Link href={`/admin/students/${student.id}`}>
-                                                <Button variant="ghost" size="sm" className="h-9 w-9 p-0 hover:bg-accent/10 hover:text-accent rounded-[5px]">
-                                                    <Eye size={18} />
+                                            <div className="flex justify-end gap-2">
+                                                <Link href={`/admin/students/${student.id}`}>
+                                                    <Button variant="ghost" size="sm" className="h-9 w-9 p-0 hover:bg-accent/10 hover:text-accent rounded-[5px]">
+                                                        <Eye size={18} />
+                                                    </Button>
+                                                </Link>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    className="h-9 w-9 p-0 hover:bg-rose-500/10 hover:text-rose-500 rounded-[5px]"
+                                                    onClick={() => {
+                                                        if (confirm('Are you sure you want to delete this student?')) {
+                                                            api.deleteStudent(student.id).then(() => fetchStudents());
+                                                        }
+                                                    }}
+                                                >
+                                                    <Trash2 size={18} />
                                                 </Button>
-                                            </Link>
+                                            </div>
                                         </TCell>
                                     </TRow>
                                 ))

@@ -121,7 +121,7 @@ export function HeroSlider() {
                                     </Button>
                                 </Link>
                                 <Link href={slides[current].ctaSecondaryHref}>
-                                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                                    <Button size="lg" variant="secondary" className="w-full sm:w-auto">
                                         {slides[current].ctaSecondary}
                                     </Button>
                                 </Link>

@@ -32,28 +32,46 @@ export interface StudentRegistrationRequest {
     paymentAmount: number;
 }
 
+export interface PaymentResponse {
+    id: number;
+    method: PaymentMethod;
+    amount: number;
+    proofUrl?: string;
+    verified: boolean;
+    verifiedAt?: string;
+    verifiedBy?: string;
+    createdAt: string;
+}
+
 export interface StudentResponse {
     id: number;
     registrationCode: string;
     fullName: string;
     email: string;
     phone: string;
-    phoneNumber?: string;
     district: string;
-    city?: string;
-    country?: string;
-    dateOfBirth?: string;
-    educationLevel?: EducationLevel | string;
+    educationLevel: EducationLevel;
     university?: string;
-    currentOccupation?: string;
-    programType?: ProgramType;
+    programType: ProgramType;
     courseSelected: string;
+    session: ClassSession;
     registrationType: RegistrationType;
-    motivation?: string;
-    paymentReceipt?: string;
-    idDocument?: string;
     status: StudentStatus;
+    statusDisplayName: string;
+    adminComments?: string;
+    partnerComments?: string;
+    motivationStatement?: string;
+    referralSource?: string;
+    partner?: any;
+    cohort?: {
+        name: string;
+        startDate: string;
+        endDate: string;
+    };
+    payment?: PaymentResponse;
+    documents: any[];
     createdAt: string;
+    updatedAt: string;
 }
 
 export interface Course {
@@ -65,6 +83,7 @@ export interface Course {
 }
 
 export interface StudentStatusResponse {
+    id: number;
     registrationCode: string;
     fullName: string;
     program: string;
@@ -230,6 +249,12 @@ export const api = {
         fetch(`${API_BASE_URL}/admin/students/${id}`, {
             headers: getAuthHeader(),
         }).then(res => handleResponse<ApiResponse<StudentResponse>>(res)),
+
+    deleteStudent: (id: number): Promise<ApiResponse<string>> =>
+        fetch(`${API_BASE_URL}/admin/students/${id}`, {
+            method: 'DELETE',
+            headers: getAuthHeader(),
+        }).then(res => handleResponse<ApiResponse<string>>(res)),
 
     // Courses
     getActiveCourses: (): Promise<ApiResponse<Course[]>> =>

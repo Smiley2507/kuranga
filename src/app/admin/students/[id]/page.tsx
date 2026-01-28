@@ -1,137 +1,78 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Card } from "@/components/ui/Card";
+import { api, StudentResponse, StudentStatus } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { api, StudentResponse, ApiResponse } from "@/lib/api";
-import {
-    ChevronLeft,
-    User,
-    Mail,
-    Phone,
-    MapPin,
-    GraduationCap,
-    CreditCard,
-    Calendar,
-    FileText,
-    Download,
-    CheckCircle2,
-    XCircle,
-    Clock,
-    ShieldCheck,
-    MessageSquare,
-    Layers
-} from 'lucide-react';
+import { ArrowLeft, CheckCircle2, XCircle, Clock, FileText, Download, Calendar, User, Mail, Phone, MapPin, Building2, Upload } from 'lucide-react';
 import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/components/ui/Toast';
-import { Dialog } from '@/components/ui/Dialog';
-import { Select } from '@/components/ui/Select';
-import { Input } from '@/components/ui/Input';
+import { Section } from "@/components/ui/Section";
 
-export default function StudentDetailsPage() {
-    const { id } = useParams();
+export default function StudentDetailPage() {
+    const params = useParams();
     const router = useRouter();
-    const { showToast } = useToast();
     const [student, setStudent] = useState<StudentResponse | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isActionLoading, setIsActionLoading] = useState(false);
-    const [cohorts, setCohorts] = useState<any[]>([]);
-
-    // Modal states
-    const [approvalModal, setApprovalModal] = useState({
-        isOpen: false,
-        type: 'APPROVE' as 'APPROVE' | 'REJECT',
-        comments: '',
-        cohortId: ''
-    });
 
     useEffect(() => {
-        const fetchCohorts = async () => {
-            try {
-                const cohortsRes = await api.getCohorts();
-                setCohorts(cohortsRes.data || []);
-            } catch (error) {
-                console.error('Failed to fetch cohorts:', error);
-            }
-        };
-        fetchCohorts();
-    }, []);
-
-    useEffect(() => {
-        const fetchStudent = async () => {
-            try {
-                const res = await api.getStudentById(Number(id));
-                setStudent(res.data);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchStudent();
-    }, [id]);
-
-    const handleAction = async (action: 'APPROVE' | 'REJECT' | 'VERIFY_PAYMENT') => {
-        if (action === 'VERIFY_PAYMENT') {
-            setIsActionLoading(true);
-            try {
-                await api.verifyPayment(Number(id));
-                showToast('Payment verified successfully', 'success');
-                const res = await api.getStudentById(Number(id));
-                setStudent(res.data);
-            } catch (error: any) {
-                showToast(error.message || 'Payment verification failed', 'error');
-            } finally {
-                setIsActionLoading(false);
-            }
-            return;
+        if (params.id) {
+            fetchStudent();
         }
+    }, [params.id]);
 
-        setApprovalModal({
-            isOpen: true,
-            type: action as 'APPROVE' | 'REJECT',
-            comments: '',
-            cohortId: student?.status === 'UNDER_REVIEW' ? '' : ''
-        });
+    const fetchStudent = async () => {
+        setIsLoading(true);
+        try {
+            const res = await api.getStudentById(Number(params.id));
+            setStudent(res.data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const confirmApproval = async () => {
+    if (isLoading) {
+        return <div className="flex items-center justify-center min-h-[500px]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div></div>;
+    }
+
+    if (!student) {
+        return <div className="text-center py-20">Student not found</div>;
+    }
+
+    const handleVerifyPayment = async () => {
+        if (!confirm('Are you sure you want to verify this payment?')) return;
         setIsActionLoading(true);
         try {
-            const isApprove = approvalModal.type === 'APPROVE';
-            const payload = {
-                studentId: Number(id),
-                approved: isApprove,
-                comments: approvalModal.comments,
-                cohortId: isApprove && approvalModal.cohortId ? Number(approvalModal.cohortId) : null
-            };
-
-            await api.approveStudent(Number(id), payload);
-            showToast(`Student ${isApprove ? 'approved' : 'rejected'} successfully`, 'success');
-            setApprovalModal(prev => ({ ...prev, isOpen: false }));
-
-            const res = await api.getStudentById(Number(id));
-            setStudent(res.data);
-        } catch (error: any) {
-            showToast(error.message || 'Action failed', 'error');
+            await api.verifyPayment(student.id);
+            fetchStudent();
+        } catch (error) {
+            console.error(error);
+            alert('Failed to verify payment');
         } finally {
             setIsActionLoading(false);
         }
     };
 
-    if (isLoading) {
-        return (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-                <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-                <p className="text-slate-400 font-bold animate-pulse uppercase tracking-widest text-xs">Fetching records...</p>
-            </div>
-        );
-    }
+    const handleApproval = async (approved: boolean) => {
+        const comments = prompt(`Enter comments for ${approved ? 'approval' : 'rejection'}:`);
+        if (comments === null) return;
 
-    if (!student) return <div>Student not found</div>;
+        setIsActionLoading(true);
+        try {
+            await api.approveStudent(student.id, { approved, comments });
+            fetchStudent();
+        } catch (error) {
+            console.error(error);
+            alert('Failed to update status');
+        } finally {
+            setIsActionLoading(false);
+        }
+    };
 
     const statusVariants: Record<string, string> = {
         PENDING_PAYMENT: 'warning',
@@ -144,226 +85,193 @@ export default function StudentDetailsPage() {
     };
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div className="flex items-center gap-4">
-                    <Link href="/admin/students">
-                        <Button variant="outline" size="sm" className="w-10 h-10 p-0 rounded-[5px] border-border bg-card border">
-                            <ChevronLeft size={20} />
-                        </Button>
-                    </Link>
-                    <div>
-                        <div className="flex items-center gap-3">
-                            <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">{student.fullName}</h1>
-                            <Badge variant={statusVariants[student.status] as any} className="font-bold text-[10px] px-3 py-1">
-                                {student.status.replace('_', ' ')}
-                            </Badge>
-                        </div>
-                        <p className="text-muted-foreground text-sm font-medium mt-1">Applied on {new Date(student.createdAt).toLocaleDateString()} • Ref: #{student.registrationCode}</p>
-                    </div>
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
+            <div className="flex items-center gap-4">
+                <Link href="/admin/students">
+                    <Button variant="ghost" size="sm" className="h-10 w-10 p-0 rounded-full border border-border hover:bg-card">
+                        <ArrowLeft size={18} />
+                    </Button>
+                </Link>
+                <div>
+                    <h1 className="text-2xl font-bold text-foreground">Student Details</h1>
+                    <p className="text-muted-foreground text-sm">View and manage student application.</p>
                 </div>
-
-                <div className="flex gap-3 w-full md:w-auto">
+                <div className="ml-auto flex gap-2">
                     {student.status === 'UNDER_REVIEW' && (
                         <>
                             <Button
-                                onClick={() => handleAction('REJECT')}
-                                disabled={isActionLoading}
                                 variant="outline"
-                                className="flex-1 md:flex-none border-destructive/20 text-destructive bg-card hover:bg-destructive/5 font-bold h-12 border"
+                                className="border-rose-200 text-rose-600 hover:bg-rose-50"
+                                onClick={() => handleApproval(false)}
+                                isLoading={isActionLoading}
                             >
                                 <XCircle size={18} className="mr-2" /> Reject
                             </Button>
                             <Button
-                                onClick={() => handleAction('APPROVE')}
-                                disabled={isActionLoading}
-                                className="flex-1 md:flex-none font-bold h-12 shadow-sm"
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                                onClick={() => handleApproval(true)}
+                                isLoading={isActionLoading}
                             >
                                 <CheckCircle2 size={18} className="mr-2" /> Approve
                             </Button>
                         </>
                     )}
-                    {student.status === 'PENDING_PAYMENT' && (
-                        <Button
-                            onClick={() => handleAction('VERIFY_PAYMENT')}
-                            disabled={isActionLoading}
-                            className="w-full md:w-auto font-black h-12"
-                        >
-                            <ShieldCheck size={18} className="mr-2" /> Verify Payment
-                        </Button>
-                    )}
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Information Columns */}
-                <div className="lg:col-span-2 space-y-8">
-                    {/* Basic Info */}
-                    <Card className="border-border border rounded-[5px] overflow-hidden shadow-sm">
-                        <div className="p-6 border-b border-border bg-muted/30 flex items-center gap-2">
-                            <User size={18} className="text-accent" />
-                            <h3 className="font-bold text-foreground text-sm uppercase tracking-tighter">Personal Information</h3>
-                        </div>
-                        <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <InfoItem icon={Mail} label="Email Address" value={student.email || ''} />
-                            <InfoItem icon={Phone} label="Phone Number" value={student.phone || student.phoneNumber || ''} />
-                            <InfoItem icon={MapPin} label="Location" value={`${student.district || student.city || ''}, Rwanda`} />
-                            <InfoItem icon={Calendar} label="Date of Birth" value={student.dateOfBirth || 'N/A'} />
-                        </div>
-                    </Card>
-
-                    {/* Education & Experience */}
-                    <Card className="border-border border rounded-[5px] overflow-hidden shadow-sm">
-                        <div className="p-6 border-b border-border bg-muted/30 flex items-center gap-2">
-                            <GraduationCap size={18} className="text-accent" />
-                            <h3 className="font-bold text-foreground text-sm uppercase tracking-tighter">Academic & Professional</h3>
-                        </div>
-                        <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <InfoItem label="Education Level" value={student.educationLevel || ''} />
-                            <InfoItem label="Current Occupation" value={student.currentOccupation || 'Not specified'} />
-                            <div className="md:col-span-2 capitalize">
-                                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1.5">Selected Program</p>
-                                <div className="p-4 bg-muted/20 rounded-[5px] border border-border">
-                                    <p className="font-bold text-foreground">{student.courseSelected}</p>
-                                    <p className="text-xs text-muted-foreground font-bold mt-1">Application Type: <span className="text-primary">{student.registrationType}</span></p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Main Info */}
+                <Card className="lg:col-span-2 space-y-8 p-6 md:p-8 bg-card border-border shadow-sm">
+                    <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-4">
+                            <div className="w-16 h-16 rounded-[5px] bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                                {student.fullName.charAt(0)}
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold text-foreground">{student.fullName}</h2>
+                                <p className="text-muted-foreground font-medium">{student.email}</p>
+                                <div className="flex gap-2 mt-2">
+                                    <Badge variant={statusVariants[student.status] as any} className="font-bold">
+                                        {student.status.replace('_', ' ')}
+                                    </Badge>
+                                    <span className="text-xs font-bold px-2 py-0.5 rounded-[5px] bg-muted border border-border text-muted-foreground uppercase tracking-wider">
+                                        {student.registrationCode}
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </Card>
-
-                    {/* Motivation */}
-                    <Card className="border-border border rounded-[5px] overflow-hidden shadow-sm">
-                        <div className="p-6 border-b border-border bg-muted/30 flex items-center gap-2">
-                            <FileText size={18} className="text-accent" />
-                            <h3 className="font-bold text-foreground text-sm uppercase tracking-tighter">Motivation & Goals</h3>
-                        </div>
-                        <div className="p-6 md:p-8">
-                            <p className="text-muted-foreground leading-relaxed font-medium whitespace-pre-wrap">{student.motivation || 'No motivation statement provided.'}</p>
-                        </div>
-                    </Card>
-                </div>
-
-                {/* Sidebar Documents */}
-                <div className="space-y-8">
-                    {/* Payment Status */}
-                    <Card className="border-border border rounded-[5px] overflow-hidden shadow-sm bg-foreground text-background p-8 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                        <CreditCard size={32} className="text-accent mb-6" />
-                        <h3 className="font-bold text-xl mb-4 leading-tight">Billing &<br />Payments</h3>
-                        <div className="space-y-4">
-                            <div className="flex justify-between items-center py-3 border-b border-background/10 uppercase tracking-tighter font-bold text-[10px]">
-                                <span className="opacity-40">Status</span>
-                                <span className={cn(
-                                    student.status === 'PENDING_PAYMENT' ? "text-amber-400" : "text-emerald-400"
-                                )}>{student.status.replace('_', ' ')}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-3 border-b border-background/10 uppercase tracking-tighter font-bold text-[10px]">
-                                <span className="opacity-40">Amount</span>
-                                <span>50,000 RWF</span>
-                            </div>
-                        </div>
-                    </Card>
-
-                    {/* Documents List */}
-                    <div className="space-y-4">
-                        <h4 className="font-bold text-foreground text-xs uppercase tracking-widest px-2">Uploaded Documents</h4>
-
-                        <DocumentCard
-                            title="Payment Receipt"
-                            fileName={student.paymentReceipt || 'Not uploaded'}
-                            isAvailable={!!student.paymentReceipt}
-                            onView={() => window.open(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api'}/students/${student.id}/payment-receipt`, '_blank')}
-                        />
-
-                        <DocumentCard
-                            title="National ID / Passport"
-                            fileName={student.idDocument || 'Not uploaded'}
-                            isAvailable={!!student.idDocument}
-                            onView={() => window.open(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api'}/students/${student.id}/id-document`, '_blank')}
-                        />
-                    </div>
-                </div>
-            </div>
-            <Dialog
-                isOpen={approvalModal.isOpen}
-                onClose={() => setApprovalModal(prev => ({ ...prev, isOpen: false }))}
-                title={approvalModal.type === 'APPROVE' ? 'Approve Application' : 'Reject Application'}
-                description={approvalModal.type === 'APPROVE' ? 'You are about to approve this student application. Please add any comments and assign a cohort if necessary.' : 'Please provide a reason for rejecting this application.'}
-                type={approvalModal.type === 'APPROVE' ? 'success' : 'danger'}
-                confirmLabel={approvalModal.type === 'APPROVE' ? 'Confirm Approval' : 'Confirm Rejection'}
-                onConfirm={confirmApproval}
-                isLoading={isActionLoading}
-            >
-                <div className="space-y-4 pt-4">
-                    <div className="space-y-2">
-                        <label className="text-sm font-bold text-foreground flex items-center gap-2">
-                            <MessageSquare size={14} className="text-accent" />
-                            {approvalModal.type === 'APPROVE' ? 'Internal Comments' : 'Rejection Reason'}
-                        </label>
-                        <textarea
-                            className="w-full min-h-[100px] p-4 bg-muted/50 border border-border rounded-[5px] text-sm focus:outline-none focus:ring-1 focus:ring-accent resize-none font-medium"
-                            placeholder={approvalModal.type === 'APPROVE' ? 'Add any notes for the team...' : 'Explain why the application was rejected...'}
-                            value={approvalModal.comments}
-                            onChange={(e) => setApprovalModal(prev => ({ ...prev, comments: e.target.value }))}
-                        />
                     </div>
 
-                    {approvalModal.type === 'APPROVE' && student?.registrationType === 'REGULAR' && (
-                        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                            <Select
-                                label="Assign Cohort (Optional)"
-                                value={approvalModal.cohortId}
-                                onChange={(e) => setApprovalModal(prev => ({ ...prev, cohortId: e.target.value }))}
-                                options={cohorts.map(c => ({ value: c.id, label: c.name }))}
-                            />
-                            <p className="text-[10px] text-muted-foreground font-bold mt-1 uppercase flex items-center gap-1">
-                                <Layers size={10} /> Assigning a cohort marks the student as enrolled.
-                            </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                        <div>
+                            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <User size={14} /> Personal Information
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">Phone</span>
+                                    <span className="text-sm font-bold">{student.phone}</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">District</span>
+                                    <span className="text-sm font-bold">{student.district}</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">Registration Type</span>
+                                    <span className="text-sm font-bold">{student.registrationType}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <Building2 size={14} /> Academic Information
+                            </h3>
+                            <div className="space-y-4">
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">Education Level</span>
+                                    <span className="text-sm font-bold">{student.educationLevel}</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">University</span>
+                                    <span className="text-sm font-bold">{student.university || 'N/A'}</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">Program</span>
+                                    <span className="text-sm font-bold">{student.programType}</span>
+                                </div>
+                                <div className="flex justify-between py-2 border-b border-border/50">
+                                    <span className="text-sm text-muted-foreground font-medium">Selected Course</span>
+                                    <span className="text-sm font-bold text-accent">{student.courseSelected}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {student.motivationStatement && (
+                        <div>
+                            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <FileText size={14} /> Motivation Statement
+                            </h3>
+                            <div className="bg-muted/30 p-4 rounded-[5px] border border-border/50">
+                                <p className="text-sm italic text-muted-foreground leading-relaxed">
+                                    "{student.motivationStatement}"
+                                </p>
+                            </div>
                         </div>
                     )}
-                </div>
-            </Dialog>
-        </div>
-    );
-}
+                </Card>
 
-function InfoItem({ icon: Icon, label, value }: { icon?: any, label: string, value: string }) {
-    return (
-        <div className="space-y-1.5">
-            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
-                {Icon && <Icon size={12} className="opacity-50" />} {label}
-            </p>
-            <p className="font-bold text-foreground text-sm">{value}</p>
-        </div>
-    );
-}
+                {/* Sidebar */}
+                <div className="space-y-6">
+                    {/* Payment Status Card */}
+                    <Card className="p-6 bg-card border-border shadow-sm space-y-6">
+                        <div className="flex items-center justify-between">
+                            <h3 className="font-bold text-foreground">Payment Status</h3>
+                            {student.payment?.verified ? (
+                                <span className="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full border border-emerald-100">
+                                    <CheckCircle2 size={12} className="mr-1" /> Verified
+                                </span>
+                            ) : (
+                                <span className="flex items-center text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-full border border-amber-100">
+                                    <Clock size={12} className="mr-1" /> Pending
+                                </span>
+                            )}
+                        </div>
 
-function DocumentCard({ title, fileName, isAvailable, onView }: { title: string, fileName: string, isAvailable: boolean, onView: () => void }) {
-    return (
-        <Card className={cn(
-            "p-5 border rounded-[5px] transition-all",
-            isAvailable ? "border-border bg-card hover:border-accent/20 group cursor-pointer transition-all duration-300 shadow-sm" : "border-border bg-muted/50 opacity-60"
-        )} onClick={isAvailable ? onView : undefined}>
-            <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                    <div className={cn(
-                        "w-10 h-10 rounded-[5px] flex items-center justify-center transition-colors",
-                        isAvailable ? "bg-foreground text-accent group-hover:bg-accent group-hover:text-background" : "bg-muted text-muted-foreground"
-                    )}>
-                        <FileText size={20} />
-                    </div>
-                    <div>
-                        <p className="font-bold text-foreground text-xs leading-none">{title}</p>
-                        <p className="text-[10px] font-bold text-muted-foreground mt-1 truncate max-w-[150px]">{fileName}</p>
-                    </div>
+                        <div className="space-y-3">
+                            <div className="flex justify-between text-sm">
+                                <span className="text-muted-foreground">Method</span>
+                                <span className="font-bold">{student.payment?.method || 'N/A'}</span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                                <span className="text-muted-foreground">Amount</span>
+                                <span className="font-bold">{student.payment?.amount?.toLocaleString()} FRW</span>
+                            </div>
+                        </div>
+
+                        {student.payment?.proofUrl && (
+                            <div className="pt-4 border-t border-border">
+                                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-3">Proof of Payment</p>
+                                <a
+                                    href={student.payment.proofUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-3 p-3 rounded-[5px] border border-border bg-muted/50 hover:bg-muted transition-colors group"
+                                >
+                                    <div className="w-8 h-8 rounded bg-background flex items-center justify-center border border-border group-hover:border-accent group-hover:text-accent transition-colors">
+                                        <FileText size={16} />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-xs font-bold text-foreground group-hover:text-accent transition-colors">View Receipt</p>
+                                        <p className="text-[10px] text-muted-foreground">Click to open</p>
+                                    </div>
+                                </a>
+
+                                {!student.payment.verified && (
+                                    <Button
+                                        className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+                                        onClick={handleVerifyPayment}
+                                        isLoading={isActionLoading}
+                                    >
+                                        <CheckCircle2 size={16} className="mr-2" /> Verify Payment
+                                    </Button>
+                                )}
+                            </div>
+                        )}
+                    </Card>
+
+                    {/* Admin Actions */}
+                    {student.adminComments && (
+                        <Card className="p-6 bg-card border-border shadow-sm">
+                            <h3 className="font-bold text-foreground mb-4">Admin Remarks</h3>
+                            <p className="text-sm text-muted-foreground italic">
+                                "{student.adminComments}"
+                            </p>
+                        </Card>
+                    )}
                 </div>
-                {isAvailable && (
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-[5px] text-muted-foreground group-hover:text-accent">
-                        <Download size={16} />
-                    </Button>
-                )}
             </div>
-        </Card>
+        </div>
     );
 }

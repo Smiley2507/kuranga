@@ -20,7 +20,7 @@ export default function Programs() {
                     {/* Digital on Demand */}
                     <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-center">
                         <div className="flex-1">
-                            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-primary mb-6">
+                            <div className="w-16 h-16 bg-blue-100 rounded-[5px] flex items-center justify-center text-primary mb-6">
                                 <Rocket size={32} />
                             </div>
                             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Digital on Demand</h2>
@@ -31,7 +31,7 @@ export default function Programs() {
                                 <Button variant="outline">View Our Services</Button>
                             </Link>
                         </div>
-                        <div className="flex-1 h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div className="flex-1 h-[500px] w-full relative rounded-[5px] overflow-hidden shadow-2xl group">
                             <Image
                                 src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2670&auto=format&fit=crop"
                                 alt="Consulting"
@@ -45,16 +45,16 @@ export default function Programs() {
                     {/* MyPathpreneur */}
                     <div id="mypathpreneur" className="scroll-mt-24 flex flex-col md:flex-row-reverse gap-12 md:gap-20 items-center">
                         <div className="flex-1">
-                            <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-700 mb-6">
+                            <div className="w-16 h-16 bg-purple-100 rounded-[5px] flex items-center justify-center text-purple-700 mb-6">
                                 <Users size={32} />
                             </div>
                             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">MyPathpreneur</h2>
                             <p className="text-gray-600 text-lg leading-relaxed mb-8">
                                 Empowering youth, women, and persons with disabilities with business, accounting, and entrepreneurship skills. This initiative creates pathways to self-reliance and economic contribution.
                             </p>
-                            <Button variant="outline">Support This Program</Button>
+                            <Button variant="outline" className="shadow-sm">Support This Program</Button>
                         </div>
-                        <div className="flex-1 h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div className="flex-1 h-[500px] w-full relative rounded-[5px] overflow-hidden shadow-2xl group">
                             <Image
                                 src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2670&auto=format&fit=crop"
                                 alt="Training Workshop"
@@ -68,7 +68,7 @@ export default function Programs() {
                     {/* Human Resources Outsourcing */}
                     <div id="hr-outsourcing" className="scroll-mt-24 flex flex-col md:flex-row gap-12 md:gap-20 items-center">
                         <div className="flex-1">
-                            <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-700 mb-6">
+                            <div className="w-16 h-16 bg-orange-100 rounded-[5px] flex items-center justify-center text-orange-700 mb-6">
                                 <Briefcase size={32} />
                             </div>
                             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Human Resources Outsourcing</h2>
@@ -79,7 +79,7 @@ export default function Programs() {
                                 <Button variant="outline">Find Talent / Find Work</Button>
                             </Link>
                         </div>
-                        <div className="flex-1 h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div className="flex-1 h-[500px] w-full relative rounded-[5px] overflow-hidden shadow-2xl group">
                             <Image
                                 src="https://images.unsplash.com/photo-1521791136064-7985c2d11f99?q=80&w=2669&auto=format&fit=crop"
                                 alt="HR Services"

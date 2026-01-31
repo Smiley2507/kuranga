@@ -7,14 +7,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { MegaMenu } from './MegaMenu';
 import { Dropdown } from '@/components/ui/Dropdown';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { products } from '@/lib/data/products';
+import { services } from '@/lib/data/services';
 
 const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Products', href: '/products' },
+    {
+        name: 'Services',
+        href: '/services',
+        type: 'megamenu',
+        items: services.map(s => ({ name: s.title, href: `/services#${s.slug}`, description: s.description }))
+    },
+    {
+        name: 'Products',
+        href: '/products',
+        type: 'megamenu',
+        items: products.map(p => ({ name: p.name, href: `/products/${p.slug}`, description: p.description }))
+    },
     {
         name: 'Initiatives',
         href: '#',
@@ -73,9 +86,16 @@ export function Header() {
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden md:flex items-center gap-8">
+                        <nav className="hidden md:flex items-center gap-1">
                             {navItems.map((item) => (
-                                item.type === 'dropdown' ? (
+                                item.type === 'megamenu' ? (
+                                    <MegaMenu
+                                        key={item.name}
+                                        label={item.name}
+                                        items={item.items || []}
+                                        scrolled={scrolled}
+                                    />
+                                ) : item.type === 'dropdown' ? (
                                     <Dropdown
                                         key={item.name}
                                         label={item.name}
@@ -87,28 +107,34 @@ export function Header() {
                                         key={item.href}
                                         href={item.href}
                                         className={cn(
-                                            'text-sm font-medium transition-colors font-sans',
+                                            'text-sm font-medium transition-colors font-sans py-2 px-4 relative group',
                                             pathname === item.href
                                                 ? 'text-accent font-semibold'
                                                 : scrolled
-                                                    ? 'text-muted-foreground hover:text-accent'
+                                                    ? 'text-foreground hover:text-accent'
                                                     : 'text-white/90 hover:text-white'
                                         )}
                                     >
                                         {item.name}
+                                        <span className={cn(
+                                            "absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100",
+                                            pathname === item.href && "scale-x-100"
+                                        )} />
                                     </Link>
                                 )
                             ))}
-                            <Link href="/contact">
-                                <button className={cn(
-                                    "px-5 py-2.5 rounded-[5px] text-sm font-bold transition-all font-sans",
-                                    scrolled
-                                        ? "bg-accent text-white hover:bg-accent/90"
-                                        : "bg-background text-foreground border border-border hover:bg-muted"
-                                )}>
-                                    Get Started
-                                </button>
-                            </Link>
+                            <div className="ml-4">
+                                <Link href="/contact">
+                                    <button className={cn(
+                                        "px-5 py-2.5 rounded-[5px] text-sm font-bold transition-all font-sans",
+                                        scrolled
+                                            ? "bg-accent text-white hover:bg-accent/90 shadow-lg shadow-accent/20"
+                                            : "bg-white text-primary border border-white hover:bg-white/90"
+                                    )}>
+                                        Get Started
+                                    </button>
+                                </Link>
+                            </div>
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -134,7 +160,7 @@ export function Header() {
                                 >
                                     <nav className="flex flex-col gap-4 mt-2">
                                         {navItems.map((item) => (
-                                            item.type === 'dropdown' ? (
+                                            item.type === 'dropdown' || item.type === 'megamenu' ? (
                                                 <div key={item.name} className="flex flex-col gap-2">
                                                     <span className="text-lg font-semibold text-foreground px-4">{item.name}</span>
                                                     {item.items?.map((subItem) => (

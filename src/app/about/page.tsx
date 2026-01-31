@@ -60,9 +60,9 @@ export default function About() {
 
                         <div className="w-full md:flex-1 relative">
                             {/* Decorative background element */}
-                            <div className="absolute -top-10 -right-10 w-2/3 h-full bg-blue-50 rounded-3xl -z-10"></div>
+                            <div className="absolute -top-10 -right-10 w-2/3 h-full bg-blue-50 rounded-[5px] -z-10"></div>
 
-                            <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
+                            <div className="relative h-[400px] md:h-[500px] w-full rounded-[5px] overflow-hidden shadow-2xl">
                                 <Image
                                     src="/kuranga1.jpg"
                                     alt="Team meeting"
@@ -108,9 +108,9 @@ export default function About() {
 
                         <div className="w-full md:flex-1 relative">
                             {/* Decorative background element */}
-                            <div className="absolute -bottom-10 -left-10 w-2/3 h-full bg-accent/5 rounded-3xl -z-10"></div>
+                            <div className="absolute -bottom-10 -left-10 w-2/3 h-full bg-accent/5 rounded-[5px] -z-10"></div>
 
-                            <div className="relative h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-xl">
+                            <div className="relative h-[400px] md:h-[500px] w-full rounded-[5px] overflow-hidden shadow-xl">
                                 <Image
                                     src="/kuranga-meet3.jpg"
                                     alt="Team collaboration"
@@ -144,7 +144,7 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <FadeIn delay={0}>
                         <Card className="p-8 h-full flex flex-col hover:shadow-lg transition-shadow">
-                            <div className="w-14 h-14 bg-blue-100 text-primary rounded-xl flex items-center justify-center mb-6">
+                            <div className="w-14 h-14 bg-blue-100 text-primary rounded-[5px] flex items-center justify-center mb-6">
                                 <Laptop size={28} />
                             </div>
                             <h3 className="text-xl font-bold text-primary mb-4">Digital Finance & Accounting Systems</h3>
@@ -155,7 +155,7 @@ export default function About() {
                     </FadeIn>
                     <FadeIn delay={0.1}>
                         <Card className="p-8 h-full flex flex-col hover:shadow-lg transition-shadow">
-                            <div className="w-14 h-14 bg-green-100 text-green-700 rounded-xl flex items-center justify-center mb-6">
+                            <div className="w-14 h-14 bg-green-100 text-green-700 rounded-[5px] flex items-center justify-center mb-6">
                                 <BookOpen size={28} />
                             </div>
                             <h3 className="text-xl font-bold text-primary mb-4">Professional Training & Capacity Building</h3>
@@ -166,7 +166,7 @@ export default function About() {
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <Card className="p-8 h-full flex flex-col hover:shadow-lg transition-shadow">
-                            <div className="w-14 h-14 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center mb-6">
+                            <div className="w-14 h-14 bg-purple-100 text-purple-700 rounded-[5px] flex items-center justify-center mb-6">
                                 <Users size={28} />
                             </div>
                             <h3 className="text-xl font-bold text-primary mb-4">Workforce Development & Inclusion</h3>
@@ -188,7 +188,7 @@ export default function About() {
                                 <Target size={120} className="text-blue-600" />
                             </div>
                             <div className="relative z-10 flex flex-col h-full">
-                                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl inline-flex w-fit mb-6">
+                                <div className="p-3 bg-blue-50 text-blue-600 rounded-[5px] inline-flex w-fit mb-6">
                                     <Target size={28} />
                                 </div>
                                 <h3 className="text-3xl font-bold text-primary mb-4">Our Mission</h3>
@@ -203,7 +203,7 @@ export default function About() {
                                 <Award size={120} className="text-purple-600" />
                             </div>
                             <div className="relative z-10 flex flex-col h-full">
-                                <div className="p-3 bg-purple-50 text-purple-600 rounded-xl inline-flex w-fit mb-6">
+                                <div className="p-3 bg-purple-50 text-purple-600 rounded-[5px] inline-flex w-fit mb-6">
                                     <Award size={28} />
                                 </div>
                                 <h3 className="text-3xl font-bold text-primary mb-4">Our Vision</h3>
@@ -355,7 +355,7 @@ export default function About() {
                             { title: 'Mission-Driven', desc: 'Every project we undertake is aimed at creating sustainable economic impact.' },
                             { title: 'Full-Service', desc: 'From software installation to staff training and recruitment—we cover it all.' }
                         ].map((item, i) => (
-                            <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
+                            <div key={i} className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-[5px] hover:bg-white/20 transition-all duration-300">
                                 <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
                                 <p className="text-white/80 leading-relaxed">
                                     {item.desc}

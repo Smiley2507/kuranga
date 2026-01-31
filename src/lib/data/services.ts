@@ -26,7 +26,7 @@ export const services: Service[] = [
         slug: 'initial-setup',
         title: 'Initial Setup',
         description: 'Professional installation and configuration of accounting and business systems. We align your chart of accounts, workflows, user roles, and settings to best fit your industry needs.',
-        image: '/images/services/setup.jpg',
+        image: '/images/services/setup.png',
         features: [
             'Chart of accounts alignment',
             'Workflow optimization',
@@ -39,7 +39,7 @@ export const services: Service[] = [
         slug: 'software-customization',
         title: 'Software Customization',
         description: 'Tailoring QuickBooks, TeamRoll, AssetAccountant, Xero, Fathom, and Taxation Systems to match your operations.',
-        image: '/images/services/customization.jpg',
+        image: '/ASA2.jpg',
         features: [
             'Personalized report templates',
             'Custom dashboard creation',
@@ -52,7 +52,7 @@ export const services: Service[] = [
         slug: 'system-analysis-development',
         title: 'System Analysis & Development',
         description: 'We examine workflows, identify gaps, and design Custom-built digital systems tailored to your operations for efficiency and compliance, including HR solutions, payroll automation, dashboards, ERP modules, and workflow tools—built for efficiency and growth.',
-        image: '/images/services/analysis.jpg',
+        image: '/business.jpg',
         features: [
             'Gap analysis in current workflows',
             'Custom ERP module development',
@@ -78,7 +78,7 @@ export const services: Service[] = [
         slug: 'bookkeeping',
         title: 'Bookkeeping',
         description: 'Reliable, accurate, and compliant bookkeeping services tailored to your business. We ensure clean financial records, proper reconciliation, and adherence to Rwanda’s accounting and tax standards.',
-        image: '/images/services/bookkeeping.jpg',
+        image: '/ASA4.jpg',
         features: [
             'Daily/Weekly transaction entries',
             'Bank reconciliation',
@@ -91,7 +91,7 @@ export const services: Service[] = [
         slug: 'report-analysis-customization',
         title: 'Report Analysis & Customization',
         description: 'Advanced interpretation and analysis of financial reports including performance metrics, cash flow, profitability, variances, and risk indicators. We provide insights and custom dashboards for informed decision-making.',
-        image: '/images/services/reports.jpg',
+        image: '/ASA3.jpg',
         features: [
             'Cash flow & profitability analysis',
             'Risk indicator tracking',
@@ -104,7 +104,7 @@ export const services: Service[] = [
         slug: 'multi-user-environment-setup',
         title: 'Multi-User Environment Setup (LAN)',
         description: 'Secure and optimized office network setup for multi-user systems such as QuickBooks Desktop. Ensures fast performance, stability, and protected access across your organization.',
-        image: '/images/services/networking.jpg',
+        image: '/kuranga-meet3.jpg',
         features: [
             'High-speed office network LAN',
             'Secure multi-user database access',
@@ -130,27 +130,27 @@ export const services: Service[] = [
         slug: 'daas',
         title: 'DaaS (Desktop as a Service)',
         description: 'Secure, cloud-based access to your desktop software from anywhere. Enables multiple users to work on all Desktop Applications in real time with automatic backups and strong security.',
-        image: '/images/services/daas.jpg'
+        image: '/ASA2.jpg'
     },
     {
         id: '11',
         slug: 'integration',
         title: 'Integration',
         description: 'Connecting your QuickBooks and Xero with HR&Payroll platforms, POS, CRM tools, banking APIs, Inventory systems, and other digital solutions to create a unified business ecosystem.',
-        image: '/images/services/integration.jpg'
+        image: '/business.jpg'
     },
     {
         id: '12',
         slug: 'system-maintenance-support',
         title: 'System Maintenance, Assistance & Support',
         description: 'End-to-end technical support covering system updates, troubleshooting, security checks, performance optimization, and ongoing system guidance.',
-        image: '/images/services/support.jpg'
+        image: '/kuranga1.jpg'
     },
     {
         id: '13',
         slug: 'advisory-services',
         title: 'Advisory Services',
         description: 'Expert guidance in digital finance, system optimization, financial processes, automation, compliance, and best practices to help businesses operate efficiently.',
-        image: '/images/services/advisory.jpg'
+        image: '/ASA4.jpg'
     }
 ];

@@ -156,7 +156,7 @@ export function Header() {
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="absolute top-full left-0 right-0 mt-2 mx-4 p-4 rounded-[5px] glass-panel bg-card/95 backdrop-blur-xl shadow-xl md:hidden flex flex-col gap-4 border border-border"
+                                    className="absolute top-full left-0 right-0 mt-2 mx-4 p-4 rounded-[5px] glass-panel bg-card/95 backdrop-blur-xl shadow-xl md:hidden flex flex-col gap-4 border border-border max-h-[calc(100vh-120px)] overflow-y-auto scrollbar-hide"
                                 >
                                     <nav className="flex flex-col gap-4 mt-2">
                                         {navItems.map((item) => (

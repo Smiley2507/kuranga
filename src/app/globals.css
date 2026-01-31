@@ -92,6 +92,14 @@ h6 {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
 }
 
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility noise-bg {
   position: relative;
   isolation: isolate;

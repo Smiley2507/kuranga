@@ -13,7 +13,7 @@ import { CTAWithParallax } from "@/components/ui/CTAWithParallax";
 
 export default function ServicesPage() {
     return (
-        <main className="min-h-screen">
+        <main className="min-h-screen relative">
             <PageHero
                 title="Expert Services"
                 subtitle="End-to-end digital solutions designed to streamline your operations, ensure compliance, and drive efficiency."

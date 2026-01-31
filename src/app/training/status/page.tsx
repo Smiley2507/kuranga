@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -12,7 +12,7 @@ import { useSearchParams } from 'next/navigation';
 import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
 
-export default function StudentStatusPage() {
+function StudentStatusContent() {
     const searchParams = useSearchParams();
     const [code, setCode] = useState(searchParams.get('code') || '');
     const [isLoading, setIsLoading] = useState(false);
@@ -263,5 +263,17 @@ export default function StudentStatusPage() {
                 </div>
             </Section>
         </div>
+    );
+}
+
+export default function StudentStatusPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+                <Loader2 className="w-10 h-10 text-accent animate-spin" />
+            </div>
+        }>
+            <StudentStatusContent />
+        </Suspense>
     );
 }
